@@ -129,10 +129,10 @@
 
         win_layer {
             bindings = <
-&kp Q             &kp W           &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt MOUSE I    &kp O    &kp P
-&kp A             &kp S           &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
-&mt LEFT_SHIFT Z  &kp X           &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &lt BLUETOOTH LEFT_WIN  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
+&kp Q             &kp W                   &kp E         &kp R            &kp T                                                              &kp Y        &kp U  &lt MOUSE I  &kp O    &kp P
+&kp A             &kp S                   &kp D         &kp F            &kp G            &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K        &kp L    &kp SEMICOLON
+&mt LEFT_SHIFT Z  &kp X                   &kp C         &kp V            &kp B            &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA    &kp DOT  &kp SLASH
+&kp LCTRL         &lt BLUETOOTH LEFT_WIN  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                               &kp DEL
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -140,10 +140,10 @@
 
         mac_layer {
             bindings = <
-&lt BLUETOOTH Q           &kp W  &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt MOUSE I    &kp O    &kp P
-&kp A             &kp S  &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
-&mt LEFT_SHIFT Z  &kp X  &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
+&lt BLUETOOTH Q   &kp W  &kp E         &kp R                   &kp T                                                              &kp Y        &kp U  &lt MOUSE I  &kp O    &kp P
+&kp A             &kp S  &kp D         &kp F                   &kp G            &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K        &kp L    &kp SEMICOLON
+&mt LEFT_SHIFT Z  &kp X  &kp C         &kp V                   &kp B            &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA    &kp DOT  &kp SLASH
+&kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                               &kp DEL
             >;
 
             sensor-bindings = <&scroll_up_down>;
