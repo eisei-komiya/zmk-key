@@ -40,6 +40,16 @@
             bindings = <&kp EQUAL>;
             key-positions = <24 25>;
         };
+
+        tg-win {
+            bindings = <&bt0>;
+            key-positions = <42 33>;
+        };
+
+        tg-mac {
+            bindings = <&bt1>;
+            key-positions = <42 21>;
+        };
     };
 
     macros {
@@ -114,10 +124,10 @@
 
         win_layer {
             bindings = <
-&lt 7 Q           &kp W         &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt 4 I    &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 2 LA(GRAVE)  &lt 3 SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
+&kp Q             &kp W           &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt 4 I    &kp O    &kp P
+&kp A             &kp S           &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
+&mt LEFT_SHIFT Z  &kp X           &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp LCTRL         &lt 7 LEFT_WIN  &kp LEFT_ALT  &lt 2 LA(GRAVE)  &lt 3 SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
             >;
 
             sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
