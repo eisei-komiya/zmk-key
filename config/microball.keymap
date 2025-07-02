@@ -135,7 +135,7 @@
 &kp LCTRL         &lt BLUETOOTH LEFT_WIN  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
             >;
 
-            sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
+            sensor-bindings = <&scroll_up_down>;
         };
 
         mac_layer {
@@ -146,7 +146,7 @@
 &kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
             >;
 
-            sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
+            sensor-bindings = <&scroll_up_down>;
         };
 
         FUNCTION {
@@ -166,7 +166,7 @@
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                                                     &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+            sensor-bindings = <&scroll_up_down>;
         };
 
         MOUSE {
