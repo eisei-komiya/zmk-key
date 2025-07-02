@@ -27,7 +27,7 @@
         };
 
         muhennkann {
-            bindings = <&to_layer_0 INT_MUHENKAN>;
+            bindings = <&bt0 INT_MUHENKAN>;
             key-positions = <11 10>;
         };
 
@@ -43,11 +43,29 @@
     };
 
     macros {
-        to_layer_0: to_layer_0 {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+        bt0: to_layer_0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&tog_off 1 &tog_off 2>,
+                <&macro_wait_time 200>,
+                <&bt BT_SEL 0>,
+                <&macro_wait_time 500>;
+
             label = "TO_LAYER_0";
+        };
+
+        bt1: bt1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&tog_off 1 &tog_off 2>,
+                <&macro_wait_time 200>,
+                <&bt BT_SEL 1>,
+                <&macro_wait_time 500>,
+                <&tog_on 1>;
+
+            label = "BT1";
         };
     };
 
@@ -55,7 +73,7 @@
         lt_to_layer_0: lt_to_layer_0 {
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
-            bindings = <&mo>, <&to_layer_0>;
+            bindings = <&mo>, <&bt0>;
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
@@ -100,19 +118,19 @@
 
         win_layer {
             bindings = <
-&kp Q             &kp Q         &kp Q         &kp R                   &kp T                                                 &kp Y          &kp U  &kp I      &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F                   &kp G                                  &kp MINUS      &kp H          &kp J  &kp K      &kp L    &lt 4 SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                   &kp B        &kp COLON                 &kp SEMICOLON  &kp N          &kp M  &kp COMMA  &kp DOT  &lt 7 SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 3 GRAVE  &lt 4 SPACE  &lt_to_layer_0 5 MINUS    &kp ENTER      &kp BACKSPACE                             &kp RIGHT_SHIFT
+&kp Q         &kp Q         &kp Q                   &kp R        &kp T                                                     &kp Y            &kp U      &kp I    &kp O            &kp P
+&kp A         &kp S         &kp D                   &kp F        &kp G                   &kp MINUS          &kp H          &kp J            &kp K      &kp L    &lt 4 SEMICOLON  &mt LEFT_SHIFT Z
+&kp X         &kp C         &kp V                   &kp B        &kp COLON               &kp SEMICOLON      &kp N          &kp M            &kp COMMA  &kp DOT  &lt 7 SLASH      &kp LCTRL
+&kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 3 GRAVE  &lt 4 SPACE  &lt_to_layer_0 5 MINUS  &kp ENTER          &kp BACKSPACE  &kp RIGHT_SHIFT
             >;
         };
 
         ipad_layer {
             bindings = <
-&kp W             &kp W         &kp W         &kp R                   &kp T                                                 &kp Y          &kp U  &kp I      &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F                   &kp G                                  &kp MINUS      &kp H          &kp J  &kp K      &kp L    &lt 4 SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                   &kp B        &kp COLON                 &kp SEMICOLON  &kp N          &kp M  &kp COMMA  &kp DOT  &lt 7 SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 3 GRAVE  &lt 4 SPACE  &lt_to_layer_0 5 MINUS    &kp ENTER      &kp BACKSPACE                             &kp RIGHT_SHIFT
+&kp W         &kp W         &kp W                   &kp R        &kp T                                                     &kp Y            &kp U      &kp I    &kp O            &kp P
+&kp A         &kp S         &kp D                   &kp F        &kp G                   &kp MINUS          &kp H          &kp J            &kp K      &kp L    &lt 4 SEMICOLON  &mt LEFT_SHIFT Z
+&kp X         &kp C         &kp V                   &kp B        &kp COLON               &kp SEMICOLON      &kp N          &kp M            &kp COMMA  &kp DOT  &lt 7 SLASH      &kp LCTRL
+&kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 3 GRAVE  &lt 4 SPACE  &lt_to_layer_0 5 MINUS  &kp ENTER          &kp BACKSPACE  &kp RIGHT_SHIFT
             >;
         };
 
