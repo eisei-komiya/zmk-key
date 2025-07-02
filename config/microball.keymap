@@ -54,10 +54,11 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&tog_off 1 &tog_off 2>,
+                <&tog_off 0 &tog_off 1>,
                 <&macro_wait_time 200>,
                 <&bt BT_SEL 0>,
-                <&macro_wait_time 500>;
+                <&macro_wait_time 500>,
+                <&tog_on 0>;
 
             label = "BT0";
         };
@@ -66,7 +67,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&tog_off 1 &tog_off 2>,
+                <&tog_off 0 &tog_off 1>,
                 <&macro_wait_time 200>,
                 <&bt BT_SEL 1>,
                 <&macro_wait_time 500>,
@@ -112,23 +113,12 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            bindings = <
-&lt 8 Q           &kp W         &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt 4 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
-            >;
-
-            sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
-        };
-
         win_layer {
             bindings = <
-&lt 8 Q           &kp W         &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt 5 I    &kp O    &kp P
+&lt 7 Q           &kp W         &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt 4 I    &kp O    &kp P
 &kp A             &kp S         &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X         &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt 4 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 2 LA(GRAVE)  &lt 3 SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
             >;
 
             sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
@@ -136,10 +126,10 @@
 
         mac_layer {
             bindings = <
-&lt 8 Q           &kp W  &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt 5 I    &kp O    &kp P
+&lt 7 Q           &kp W  &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt 4 I    &kp O    &kp P
 &kp A             &kp S  &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X  &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp M  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt 4 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp LCTRL         &kp M  &kp LEFT_ALT  &lt 2 LA(GRAVE)  &lt 3 SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
             >;
 
             sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
