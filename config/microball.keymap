@@ -43,6 +43,13 @@
     };
 
     macros {
+        to_layer_0: to_layer_0 {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "TO_LAYER_0";
+        };
+
         bt0: to_layer_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -125,7 +132,7 @@
             >;
         };
 
-        ipad_layer {
+        mac_layer {
             bindings = <
 &kp W         &kp W         &kp W                   &kp R        &kp T                                                     &kp Y            &kp U      &kp I    &kp O            &kp P
 &kp A         &kp S         &kp D                   &kp F        &kp G                   &kp MINUS          &kp H          &kp J            &kp K      &kp L    &lt 4 SEMICOLON  &mt LEFT_SHIFT Z
