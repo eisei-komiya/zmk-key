@@ -111,20 +111,10 @@
             tapping-term-ms = <200>;
         };
 
-        scroll_up_down: wheel_up_down {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-
-            tap-ms = <20>;
-        };
-
-        scroll_vertical: scroll_vertical {
+        encoder_cw_ccw: encoder_cw_ccw {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
-
-            tap-ms = <20>;
         };
 
         tog_on: toggle_layer_on_only {
@@ -161,7 +151,7 @@
 &kp LCTRL         &lt BLUETOOTH LEFT_WIN  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                               &kp DEL
             >;
 
-            sensor-bindings = <&scroll_vertical>;
+            sensor-bindings = <&encoder_cw_ccw>;
         };
 
         mac_layer {
@@ -172,7 +162,7 @@
 &kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                               &kp DEL
             >;
 
-            sensor-bindings = <&scroll_vertical>;
+            sensor-bindings = <&encoder_cw_ccw>;
         };
 
         FUNCTION {
@@ -183,7 +173,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&encoder_cw_ccw>;
         };
 
         ARROW {
@@ -194,7 +184,7 @@
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                                                     &trans
             >;
 
-            sensor-bindings = <&scroll_vertical>;
+            sensor-bindings = <&encoder_cw_ccw>;
         };
 
         MOUSE {
@@ -214,7 +204,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&scroll_vertical>;
+            sensor-bindings = <&encoder_cw_ccw>;
         };
 
         NUM {
