@@ -104,23 +104,19 @@ try {
         $removeBt = Read-Host "Remove microball Bluetooth devices? (y/n)"
         
         if ($removeBt -eq "y") {
-            Write-Host "Removing Bluetooth devices..." -ForegroundColor Yellow
+            Write-Host "Opening Bluetooth settings..." -ForegroundColor Green
+            Write-Host "Please manually remove microball devices from the list" -ForegroundColor Yellow
+            Write-Host "1. Look for devices named 'microball' or 'Microball'" -ForegroundColor Yellow
+            Write-Host "2. Click the three dots (...) next to each device" -ForegroundColor Yellow
+            Write-Host "3. Select 'Remove device'" -ForegroundColor Yellow
+            
             try {
-                # Get all Bluetooth devices with "microball" in the name
-                $devices = Get-BluetoothDevice | Where-Object { $_.Name -like "*microball*" -or $_.Name -like "*Microball*" }
-                
-                if ($devices.Count -gt 0) {
-                    foreach ($device in $devices) {
-                        Write-Host "Removing device: $($device.Name)" -ForegroundColor Yellow
-                        Remove-BluetoothDevice -Device $device -Force
-                    }
-                    Write-Host "Bluetooth devices removed successfully!" -ForegroundColor Green
-                } else {
-                    Write-Host "No microball Bluetooth devices found" -ForegroundColor Blue
-                }
+                # Open Bluetooth settings directly
+                Start-Process "ms-settings:bluetooth"
+                Write-Host "Bluetooth settings opened successfully!" -ForegroundColor Green
             } catch {
-                Write-Host "Error: Failed to remove Bluetooth devices - $($_.Exception.Message)" -ForegroundColor Red
-                Write-Host "Note: Manually remove devices from Settings > Bluetooth & devices" -ForegroundColor Yellow
+                Write-Host "Could not open Bluetooth settings automatically" -ForegroundColor Red
+                Write-Host "Please open Settings > Bluetooth & devices manually" -ForegroundColor Yellow
             }
         }
     } else {
