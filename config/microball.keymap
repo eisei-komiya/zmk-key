@@ -99,6 +99,13 @@
 
             label = "BT1";
         };
+
+        middleBrackets: middleBrackets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp &kp &kp &kp>;
+            label = "MIDDLEBRACKETS";
+        };
     };
 
     behaviors {
@@ -189,10 +196,10 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans         &trans    &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans                 &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &lt_scroll SCROLL MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans         &trans    &trans
-&kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                     &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans                 &trans    &trans
+&kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
             >;
         };
 
