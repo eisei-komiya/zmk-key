@@ -55,6 +55,11 @@
             bindings = <&bt1>;
             key-positions = <42 21>;
         };
+
+        bootcombo {
+            bindings = <&bootloader>;
+            key-positions = <42 9>;
+        };
     };
 
     macros {
@@ -179,10 +184,10 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans         &trans    &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans                 &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &lt_scroll SCROLL MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans         &trans    &trans    &trans
-&kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                     &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans                 &trans    &trans
+&kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
             >;
         };
 
