@@ -60,6 +60,11 @@
             bindings = <&bootloader>;
             key-positions = <42 9>;
         };
+
+        bluetoothe_layer_active {
+            bindings = <&mo 7>;
+            key-positions = <9 5>;
+        };
     };
 
     macros {
