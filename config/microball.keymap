@@ -104,6 +104,14 @@
         scroll_up_down: wheel_up_down {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
+            bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+
+            tap-ms = <20>;
+        };
+
+        scroll_vertical: scroll_vertical {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
 
             tap-ms = <20>;
@@ -143,7 +151,7 @@
 &kp LCTRL         &lt BLUETOOTH LEFT_WIN  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                               &kp DEL
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_vertical>;
         };
 
         mac_layer {
@@ -154,7 +162,7 @@
 &kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 2 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                               &kp DEL
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_vertical>;
         };
 
         FUNCTION {
@@ -164,6 +172,8 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans  &trans  &trans  &kp F11
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
             >;
+
+            sensor-bindings = <&scroll_up_down>;
         };
 
         ARROW {
@@ -174,7 +184,7 @@
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                                                     &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_vertical>;
         };
 
         MOUSE {
@@ -194,7 +204,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_vertical>;
         };
 
         NUM {
