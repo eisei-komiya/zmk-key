@@ -104,19 +104,57 @@ try {
         $removeBt = Read-Host "Remove microball Bluetooth devices? (y/n)"
         
         if ($removeBt -eq "y") {
-            Write-Host "Opening Bluetooth settings..." -ForegroundColor Green
-            Write-Host "Please manually remove microball devices from the list" -ForegroundColor Yellow
-            Write-Host "1. Look for devices named 'microball' or 'Microball'" -ForegroundColor Yellow
-            Write-Host "2. Click the three dots (...) next to each device" -ForegroundColor Yellow
-            Write-Host "3. Select 'Remove device'" -ForegroundColor Yellow
+            Write-Host "Attempting to remove microball Bluetooth devices..." -ForegroundColor Yellow
             
             try {
-                # Open Bluetooth settings directly
-                Start-Process "ms-settings:bluetooth"
-                Write-Host "Bluetooth settings opened successfully!" -ForegroundColor Green
+                # Method 1: Using Get-PnpDevice (most reliable)
+                $btDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK" | Where-Object { 
+                    $_.FriendlyName -like "*microball*" -or $_.FriendlyName -like "*Microball*" 
+                }
+                
+                if ($btDevices.Count -gt 0) {
+                    foreach ($device in $btDevices) {
+                        Write-Host "Removing device: $($device.FriendlyName)" -ForegroundColor Yellow
+                        $device | Disable-PnpDevice -Confirm:$false
+                        Start-Sleep -Milliseconds 500
+                        $device | Remove-PnpDevice -Confirm:$false
+                    }
+                    Write-Host "Bluetooth devices removed successfully!" -ForegroundColor Green
+                } else {
+                    Write-Host "No microball Bluetooth devices found via PnP" -ForegroundColor Blue
+                    
+                    # Fallback: Try PowerShell registry method
+                    Write-Host "Trying alternative method..." -ForegroundColor Yellow
+                    $regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices"
+                    if (Test-Path $regPath) {
+                        $devices = Get-ChildItem $regPath | Where-Object { 
+                            $props = Get-ItemProperty $_.PSPath -ErrorAction SilentlyContinue
+                            $props.Name -like "*microball*" -or $props.Name -like "*Microball*"
+                        }
+                        
+                        if ($devices.Count -gt 0) {
+                            foreach ($device in $devices) {
+                                Write-Host "Removing registry entry: $($device.Name)" -ForegroundColor Yellow
+                                Remove-Item $device.PSPath -Recurse -Force -ErrorAction SilentlyContinue
+                            }
+                            Write-Host "Registry entries removed!" -ForegroundColor Green
+                        } else {
+                            Write-Host "No microball devices found in registry" -ForegroundColor Blue
+                        }
+                    }
+                }
             } catch {
-                Write-Host "Could not open Bluetooth settings automatically" -ForegroundColor Red
-                Write-Host "Please open Settings > Bluetooth & devices manually" -ForegroundColor Yellow
+                Write-Host "Automatic removal failed: $($_.Exception.Message)" -ForegroundColor Red
+                Write-Host "Opening Bluetooth settings for manual removal..." -ForegroundColor Yellow
+                
+                try {
+                    Start-Process "ms-settings:bluetooth"
+                    Write-Host "Bluetooth settings opened successfully!" -ForegroundColor Green
+                    Write-Host "Please manually remove microball devices from the list" -ForegroundColor Yellow
+                } catch {
+                    Write-Host "Could not open Bluetooth settings automatically" -ForegroundColor Red
+                    Write-Host "Please open Settings > Bluetooth & devices manually" -ForegroundColor Yellow
+                }
             }
         }
     } else {
