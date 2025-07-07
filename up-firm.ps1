@@ -111,14 +111,12 @@ try {
                 Write-Host "Searching for microball devices..." -ForegroundColor Blue
                 $allBtDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK" | Where-Object { $_.FriendlyName -like "*microball*" }
                 foreach ($dev in $allBtDevices) {
-                    Write-Host "  Found: $($dev.FriendlyName)" -ForegroundColor Gray
+                    Write-Host "  Found: '$($dev.FriendlyName)' (exact match check: $($dev.FriendlyName -eq 'microball'))" -ForegroundColor Gray
                 }
                 
-                # Method 1: Using Get-PnpDevice (more selective approach)
+                # Method 1: Using Get-PnpDevice (target main microball device)
                 $btDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK" | Where-Object { 
-                    # Only target the main microball device, not system services
-                    ($_.FriendlyName -like "*microball*" -and $_.FriendlyName -notlike "*サービス*" -and $_.FriendlyName -notlike "*Service*") -or
-                    ($_.FriendlyName -like "*Microball*" -and $_.FriendlyName -notlike "*サービス*" -and $_.FriendlyName -notlike "*Service*")
+                    $_.FriendlyName -eq "microball" -or $_.FriendlyName -eq "Microball"
                 }
                 
                 Write-Host "Found $($btDevices.Count) microball-related devices" -ForegroundColor Blue
