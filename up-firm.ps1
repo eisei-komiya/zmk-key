@@ -107,55 +107,48 @@ try {
             Write-Host "Attempting to remove microball Bluetooth devices..." -ForegroundColor Yellow
             
             try {
-                # Debug: List all Bluetooth devices for troubleshooting
-                Write-Host "Debug: Listing all Bluetooth devices..." -ForegroundColor Blue
-                $allBtDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK"
+                # Debug: Show microball-related devices only
+                Write-Host "Searching for microball devices..." -ForegroundColor Blue
+                $allBtDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK" | Where-Object { $_.FriendlyName -like "*microball*" }
                 foreach ($dev in $allBtDevices) {
-                    Write-Host "  - Name: $($dev.FriendlyName), InstanceId: $($dev.InstanceId)" -ForegroundColor Gray
+                    Write-Host "  Found: $($dev.FriendlyName)" -ForegroundColor Gray
                 }
                 
-                # Method 1: Using Get-PnpDevice (most reliable)
+                # Method 1: Using Get-PnpDevice (more selective approach)
                 $btDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK" | Where-Object { 
-                    $_.FriendlyName -like "*microball*" -or $_.FriendlyName -like "*Microball*" -or
-                    $_.FriendlyName -like "*fde843b52d45*" -or $_.FriendlyName -like "*fd:e8:43:b5:2d:45*" -or
-                    $_.FriendlyName -like "*fd_e8_43_b5_2d_45*" -or $_.FriendlyName -like "*fde8:43b5:2d45*" -or
-                    $_.InstanceId -like "*fd:e8:43:b5:2d:45*" -or $_.InstanceId -like "*fde843b52d45*" -or
-                    $_.InstanceId -like "*fd_e8_43_b5_2d_45*" -or $_.InstanceId -like "*FDE843B52D45*"
+                    # Only target the main microball device, not system services
+                    ($_.FriendlyName -like "*microball*" -and $_.FriendlyName -notlike "*サービス*" -and $_.FriendlyName -notlike "*Service*") -or
+                    ($_.FriendlyName -like "*Microball*" -and $_.FriendlyName -notlike "*サービス*" -and $_.FriendlyName -notlike "*Service*")
                 }
+                
+                Write-Host "Found $($btDevices.Count) microball-related devices" -ForegroundColor Blue
                 
                 if ($btDevices.Count -gt 0) {
                     foreach ($device in $btDevices) {
                         Write-Host "Removing device: $($device.FriendlyName)" -ForegroundColor Yellow
-                        $device | Disable-PnpDevice -Confirm:$false
-                        Start-Sleep -Milliseconds 500
-                        $device | Remove-PnpDevice -Confirm:$false
+                        try {
+                            # Try using PnpUtil if available
+                            if (Get-Command "pnputil.exe" -ErrorAction SilentlyContinue) {
+                                $deviceId = $device.InstanceId
+                                Write-Host "Using pnputil to remove device: $deviceId" -ForegroundColor Blue
+                                & pnputil.exe /remove-device "$deviceId" /force 2>$null
+                            } else {
+                                # Fallback to WMI method
+                                $wmiDevice = Get-WmiObject -Class Win32_PnPEntity | Where-Object { $_.DeviceID -eq $device.InstanceId }
+                                if ($wmiDevice) {
+                                    $wmiDevice.Delete()
+                                }
+                            }
+                        } catch {
+                            Write-Host "Failed to remove $($device.FriendlyName): $($_.Exception.Message)" -ForegroundColor Yellow
+                        }
                     }
-                    Write-Host "Bluetooth devices removed successfully!" -ForegroundColor Green
+                    Write-Host "Bluetooth device removal completed!" -ForegroundColor Green
                 } else {
                     Write-Host "No microball Bluetooth devices found via PnP" -ForegroundColor Blue
                     
-                    # Fallback: Try PowerShell registry method
-                    Write-Host "Trying alternative method..." -ForegroundColor Yellow
-                    $regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices"
-                    if (Test-Path $regPath) {
-                        $devices = Get-ChildItem $regPath | Where-Object { 
-                            $props = Get-ItemProperty $_.PSPath -ErrorAction SilentlyContinue
-                            $props.Name -like "*microball*" -or $props.Name -like "*Microball*" -or
-                            $_.Name -like "*fde843b52d45*" -or $_.Name -like "*fd_e8_43_b5_2d_45*" -or
-                            $_.Name -like "*FDE843B52D45*" -or $_.PSChildName -like "*fde843b52d45*" -or
-                            $_.PSChildName -like "*FDE843B52D45*" -or $_.PSChildName -like "*fd_e8_43_b5_2d_45*"
-                        }
-                        
-                        if ($devices.Count -gt 0) {
-                            foreach ($device in $devices) {
-                                Write-Host "Removing registry entry: $($device.Name)" -ForegroundColor Yellow
-                                Remove-Item $device.PSPath -Recurse -Force -ErrorAction SilentlyContinue
-                            }
-                            Write-Host "Registry entries removed!" -ForegroundColor Green
-                        } else {
-                            Write-Host "No microball devices found in registry" -ForegroundColor Blue
-                        }
-                    }
+                    # Fallback: Try manual removal via Bluetooth settings
+                    Write-Host "Automatic removal not available. Opening Bluetooth settings..." -ForegroundColor Yellow
                 }
             } catch {
                 Write-Host "Automatic removal failed: $($_.Exception.Message)" -ForegroundColor Red
