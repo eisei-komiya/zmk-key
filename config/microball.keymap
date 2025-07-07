@@ -119,14 +119,14 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
-            label = "MIDDLEBRACKETS";
+            label = "SMALLBRACKETS";
         };
 
         bigBrackets: bigBrackets {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT>;
-            label = "MIDDLEBRACKETS";
+            label = "BIGBRACKETS";
         };
 
         middleBrackets: middleBrackets {
