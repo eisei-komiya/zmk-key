@@ -80,6 +80,11 @@
             bindings = <&bigBrackets>;
             key-positions = <7 8>;
         };
+
+        minus {
+            bindings = <&kp MINUS>;
+            key-positions = <8 9>;
+        };
     };
 
     macros {
