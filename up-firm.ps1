@@ -107,9 +107,20 @@ try {
             Write-Host "Attempting to remove microball Bluetooth devices..." -ForegroundColor Yellow
             
             try {
+                # Debug: List all Bluetooth devices for troubleshooting
+                Write-Host "Debug: Listing all Bluetooth devices..." -ForegroundColor Blue
+                $allBtDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK"
+                foreach ($dev in $allBtDevices) {
+                    Write-Host "  - Name: $($dev.FriendlyName), InstanceId: $($dev.InstanceId)" -ForegroundColor Gray
+                }
+                
                 # Method 1: Using Get-PnpDevice (most reliable)
                 $btDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK" | Where-Object { 
-                    $_.FriendlyName -like "*microball*" -or $_.FriendlyName -like "*Microball*" 
+                    $_.FriendlyName -like "*microball*" -or $_.FriendlyName -like "*Microball*" -or
+                    $_.FriendlyName -like "*fde843b52d45*" -or $_.FriendlyName -like "*fd:e8:43:b5:2d:45*" -or
+                    $_.FriendlyName -like "*fd_e8_43_b5_2d_45*" -or $_.FriendlyName -like "*fde8:43b5:2d45*" -or
+                    $_.InstanceId -like "*fd:e8:43:b5:2d:45*" -or $_.InstanceId -like "*fde843b52d45*" -or
+                    $_.InstanceId -like "*fd_e8_43_b5_2d_45*" -or $_.InstanceId -like "*FDE843B52D45*"
                 }
                 
                 if ($btDevices.Count -gt 0) {
@@ -129,7 +140,10 @@ try {
                     if (Test-Path $regPath) {
                         $devices = Get-ChildItem $regPath | Where-Object { 
                             $props = Get-ItemProperty $_.PSPath -ErrorAction SilentlyContinue
-                            $props.Name -like "*microball*" -or $props.Name -like "*Microball*"
+                            $props.Name -like "*microball*" -or $props.Name -like "*Microball*" -or
+                            $_.Name -like "*fde843b52d45*" -or $_.Name -like "*fd_e8_43_b5_2d_45*" -or
+                            $_.Name -like "*FDE843B52D45*" -or $_.PSChildName -like "*fde843b52d45*" -or
+                            $_.PSChildName -like "*FDE843B52D45*" -or $_.PSChildName -like "*fd_e8_43_b5_2d_45*"
                         }
                         
                         if ($devices.Count -gt 0) {
