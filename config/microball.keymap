@@ -278,7 +278,7 @@
 
         game {
             bindings = <
-&trans          &kp Q   &kp W   &kp E  &kp R                          &trans  &trans  &trans  &trans  &trans
+&kp ESC         &kp Q   &kp W   &kp E  &kp R                          &trans  &trans  &trans  &trans  &trans
 &kp LEFT_SHIFT  &kp A   &kp S   &kp D  &kp F      &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &kp Z           &kp X   &kp C   &kp V  &kp B      &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans          &trans  &trans  &kp T  &kp SPACE  &kp G       &trans  &trans                          &trans
