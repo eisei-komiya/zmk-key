@@ -92,7 +92,7 @@
         };
 
         game_toggle {
-            bindings = <&tog 0>;
+            bindings = <&tog 7>;
             key-positions = <2 11 13>;
         };
     };
