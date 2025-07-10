@@ -9,7 +9,7 @@
 #define ARROW 3
 #define MOUSE 4
 #define SCROLL 5
-#define NUM 6
+#define NUM 8
 #define BLUETOOTH 7
 
 &mt {
@@ -92,7 +92,7 @@
         };
 
         game_toggle {
-            bindings = <&tog 0>;
+            bindings = <&tog 6>;
             key-positions = <2 11 13>;
         };
     };
@@ -199,7 +199,7 @@
 &kp Q      &kp W           &kp E         &kp R            &kp T                                                 &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp A      &kp S           &kp D         &kp F            &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &lt 4 SEMICOLON
 &kp Z      &kp X           &kp C         &kp V            &kp B        &kp COLON           &kp SEMICOLON        &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LSHFT  &lt 8 LEFT_WIN  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt 4 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 6 ENTER                             &lt 2 A
+&kp LSHFT  &lt 6 LEFT_WIN  &kp LEFT_ALT  &lt 3 LA(GRAVE)  &lt 4 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 8 ENTER                             &lt 2 A
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -258,21 +258,12 @@
             sensor-bindings = <&encoder_cw_ccw>;
         };
 
-        NUM {
-            bindings = <
-&kp MINUS          &kp N1        &kp N2  &kp N3  &kp PLUS                                                   &kp CARET         &kp AMPERSAND      &kp TILDE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp SLASH          &kp NUMBER_4  &kp N5  &kp N6  &kp ASTERISK  &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp EXCLAMATION   &kp AT_SIGN        &kp HASH        &kp DOLLAR            &kp PERCENT
-&mt LEFT_SHIFT N0  &kp N7        &kp N8  &kp N9  &kp PERIOD    &kp EQUAL                    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
-&trans             &trans        &kp N0  &trans  &trans        &trans                       &trans          &trans                                                                     &kp PIPE
-            >;
-        };
-
         game {
             bindings = <
 &kp ESC         &kp Q   &kp W   &kp E  &kp R                           &trans  &trans  &trans  &trans  &trans
 &kp LEFT_SHIFT  &kp A   &kp S   &kp D  &kp F      &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &kp Z           &kp X   &kp C   &kp V  &kp B      &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans  &trans  &kp T  &kp SPACE  &lt 6 G      &trans  &trans                          &trans
+&trans          &trans  &trans  &kp T  &kp SPACE  &lt 8 G      &trans  &trans                          &trans
             >;
         };
 
@@ -282,6 +273,15 @@
 &trans  &bt1          &trans        &trans        &trans  &trans      &trans       &trans  &trans  &trans        &trans        &trans
 &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans  &trans  &trans        &trans        &bt BT_CLR
 &trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                      &bt BT_CLR_ALL
+            >;
+        };
+
+        NUM {
+            bindings = <
+&kp MINUS          &kp N1        &kp N2  &kp N3  &kp PLUS                                                   &kp CARET         &kp AMPERSAND      &kp TILDE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&kp SLASH          &kp NUMBER_4  &kp N5  &kp N6  &kp ASTERISK  &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp EXCLAMATION   &kp AT_SIGN        &kp HASH        &kp DOLLAR            &kp PERCENT
+&mt LEFT_SHIFT N0  &kp N7        &kp N8  &kp N9  &kp PERIOD    &kp EQUAL                    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
+&trans             &trans        &kp N0  &trans  &trans        &trans                       &trans          &trans                                                                     &kp PIPE
             >;
         };
     };
