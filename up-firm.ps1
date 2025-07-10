@@ -1,6 +1,9 @@
 param(
     [Parameter(Mandatory=$true)]
-    [string]$side
+    [string]$side,
+    
+    [Parameter(Mandatory=$false)]
+    [switch]$init
 )
 
 # Parameter check
@@ -69,19 +72,23 @@ if (-not (Test-Path $targetDrive)) {
     exit 1
 }
 
-# Copy settings reset firmware first
-if (Test-Path $resetSrcFile) {
-    Write-Host "Copying settings reset firmware: $resetFileName -> $targetDrive" -ForegroundColor Cyan
-    try {
-        Copy-Item $resetSrcFile $resetDstFile -Force
-        Write-Host "Settings reset firmware copied! Please wait for device to restart, then double-click reset button again." -ForegroundColor Cyan
-        Read-Host "Press Enter after device has restarted and you've double-clicked reset button again"
-    } catch {
-        Write-Host "Warning: Failed to copy settings reset firmware - $($_.Exception.Message)" -ForegroundColor Yellow
-        Write-Host "Continuing with main firmware..." -ForegroundColor Yellow
+# Copy settings reset firmware first (only if --init flag is specified)
+if ($init) {
+    if (Test-Path $resetSrcFile) {
+        Write-Host "Copying settings reset firmware: $resetFileName -> $targetDrive" -ForegroundColor Cyan
+        try {
+            Copy-Item $resetSrcFile $resetDstFile -Force
+            Write-Host "Settings reset firmware copied! Please wait for device to restart, then double-click reset button again." -ForegroundColor Cyan
+            Read-Host "Press Enter after device has restarted and you've double-clicked reset button again"
+        } catch {
+            Write-Host "Warning: Failed to copy settings reset firmware - $($_.Exception.Message)" -ForegroundColor Yellow
+            Write-Host "Continuing with main firmware..." -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "Settings reset firmware not found, skipping reset step" -ForegroundColor Yellow
     }
 } else {
-    Write-Host "Settings reset firmware not found, skipping reset step" -ForegroundColor Yellow
+    Write-Host "Skipping settings reset (use --init to reset settings)" -ForegroundColor Blue
 }
 
 # Copy main firmware
