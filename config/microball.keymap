@@ -13,7 +13,6 @@
 #define NUM 7
 #define BLUETOOTH 8
 
-
 &mt {
     flavor = "balanced";
     quick-tap-ms = <500>;
@@ -64,7 +63,7 @@
         };
 
         bluetoothe_layer_active {
-            bindings = <&mo WIN_LAYER>;
+            bindings = <&mo 0>;
             key-positions = <9 5>;
         };
 
@@ -79,7 +78,7 @@
         };
 
         game_toggle {
-            bindings = <&tog GAME>;
+            bindings = <&tog 5>;
             key-positions = <2 11 13>;
         };
 
@@ -94,7 +93,7 @@
         };
 
         mouse-button3 {
-            bindings = <&lt_scroll 5 MCLK>;
+            bindings = <&lt_scroll 0 MCLK>;
             key-positions = <19 20>;
         };
     };
@@ -111,7 +110,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&tog_off MAC_LAYER>,
+                <&tog_off 1>,
                 <&macro_wait_time 200>,
                 <&bt BT_SEL 0>,
                 <&macro_wait_time 500>;
@@ -123,11 +122,11 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&tog_off MAC_LAYER>,
+                <&tog_off 1>,
                 <&macro_wait_time 200>,
                 <&bt BT_SEL 1>,
                 <&macro_wait_time 500>,
-                <&tog_on MAC_LAYER>;
+                <&tog_on 1>;
 
             label = "BT1";
         };
@@ -198,10 +197,10 @@
 
         win_layer {
             bindings = <
-&kp Q      &kp W              &kp E         &kp R            &kp T                                                     &kp Y          &kp U  &kp I      &kp O    &kp P
-&kp A      &kp S              &kp D         &kp F            &kp G            &kp LS(LG(S))       &kp MINUS            &kp H          &kp J  &kp K      &kp L    &lt MOUSE SEMICOLON
-&kp Z      &kp X              &kp C         &kp V            &kp B            &kp COLON           &kp SEMICOLON        &kp N          &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LSHFT  &lt GAME LEFT_WIN  &kp LEFT_ALT  &lt ARROW LANG1  &lt MOUSE SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt NUM ENTER                             &lt FUNCTION A
+&kp Q      &kp W           &kp E         &kp R        &kp T                                                 &kp Y        &kp U  &kp I      &kp O    &kp P
+&kp A      &kp S           &kp D         &kp F        &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &lt 0 SEMICOLON
+&kp Z      &kp X           &kp C         &kp V        &kp B        &kp COLON           &kp SEMICOLON        &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp LSHFT  &lt 5 LEFT_WIN  &kp LEFT_ALT  &lt 4 LANG1  &lt 0 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 0 ENTER                             &lt 3 A
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -209,10 +208,39 @@
 
         mac_layer {
             bindings = <
-&lt WIN_LAYER Q   &kp W  &kp E         &kp R             &kp T                                                                     &kp Y                &kp U  &lt MOUSE I  &kp O    &kp P
-&kp A             &kp S  &kp D         &kp F             &kp G            &kp LS(LG(S))                             &kp MINUS      &kp H                &kp J  &kp K        &kp L    &kp SEMICOLON
-&mt LEFT_SHIFT Z  &kp X  &kp C         &kp V             &kp B            &kp COLON                                 &kp SEMICOLON  &kp N                &kp M  &kp COMMA    &kp DOT  &kp SLASH
-&kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION F13  &lt ARROW SPACE  &lt_to_layer_0 FUNCTION INT_MUHENKAN      &kp BACKSPACE  &lt WIN_LAYER ENTER                               &kp DEL
+&lt 0 Q           &kp W  &kp E         &kp R      &kp T                                                          &kp Y        &kp U  &lt 0 I    &kp O    &kp P
+&kp A             &kp S  &kp D         &kp F      &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
+&mt LEFT_SHIFT Z  &kp X  &kp C         &kp V      &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp LCTRL         &kp M  &kp LEFT_ALT  &lt 3 F13  &lt 4 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
+            >;
+
+            sensor-bindings = <&encoder_cw_ccw>;
+        };
+
+        GAME {
+            bindings = <
+&kp ESC      &kp Q   &kp W   &kp E  &kp R                           &trans  &trans  &trans  &trans  &trans
+&kp TAB      &kp A   &kp S   &kp D  &kp F      &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&mt LSHFT Z  &kp X   &kp C   &kp V  &kp B      &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans  &trans  &kp T  &kp SPACE  &lt 0 G      &trans  &trans                          &trans
+            >;
+        };
+
+        MOUSE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans            &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &lt_scroll 0 MB3  &mkp MB2  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans            &trans    &trans
+&kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                        &trans
+            >;
+        };
+
+        ARROW {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                     &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -229,26 +257,6 @@
             sensor-bindings = <&encoder_cw_ccw>;
         };
 
-        ARROW {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                     &trans
-            >;
-
-            sensor-bindings = <&encoder_cw_ccw>;
-        };
-
-        MOUSE {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans            &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &lt_scroll 5 MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans            &trans    &trans
-&kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                        &trans
-            >;
-        };
-
         SCROLL {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
@@ -258,15 +266,6 @@
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
-        };
-
-        GAME {
-            bindings = <
-&kp ESC      &kp Q   &kp W   &kp E  &kp R                           &trans  &trans  &trans  &trans  &trans
-&kp TAB      &kp A   &kp S   &kp D  &kp F      &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&mt LSHFT Z  &kp X   &kp C   &kp V  &kp B      &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&trans       &trans  &trans  &kp T  &kp SPACE  &lt 8 G      &trans  &trans                          &trans
-            >;
         };
 
         BLUETOOTH {
