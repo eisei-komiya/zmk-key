@@ -78,7 +78,7 @@
         };
 
         game_toggle {
-            bindings = <&tog 5>;
+            bindings = <&tog GAME>;
             key-positions = <2 11 13>;
         };
 
@@ -93,7 +93,7 @@
         };
 
         mouse-button3 {
-            bindings = <&lt_scroll 0 MCLK>;
+            bindings = <&lt_scroll SCROLL MCLK>;
             key-positions = <19 20>;
         };
     };
