@@ -200,7 +200,7 @@
 &kp Q      &kp W           &kp E         &kp R            &kp T                                                 &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp A      &kp S           &kp D         &kp F            &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &lt MOUSE SEMICOLON
 &kp Z      &kp X           &kp C         &kp V            &kp B        &kp COLON           &kp SEMICOLON        &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LSHFT  &lt GAME LEFT_WIN  &kp LEFT_ALT  &lt ARROW LA(GRAVE)  &lt MOUSE SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt NUM ENTER                             &lt FUNCTION A
+&kp LSHFT  &lt GAME LEFT_WIN  &kp LEFT_ALT  &lt ARROW LANG1  &lt MOUSE SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt NUM ENTER                             &lt FUNCTION A
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -211,7 +211,7 @@
 &lt WIN_LAYER Q           &kp W  &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt MOUSE I    &kp O    &kp P
 &kp A             &kp S  &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X  &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION LA(GRAVE)  &lt ARROW SPACE  &lt_to_layer_0 FUNCTION INT_MUHENKAN      &kp BACKSPACE  &lt WIN_LAYER ENTER                             &kp DEL
+&kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION F13  &lt ARROW SPACE  &lt_to_layer_0 FUNCTION INT_MUHENKAN      &kp BACKSPACE  &lt WIN_LAYER ENTER                             &kp DEL
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
