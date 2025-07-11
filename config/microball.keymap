@@ -67,21 +67,6 @@
             key-positions = <9 5>;
         };
 
-        small_brackets {
-            bindings = <&smallBrackets>;
-            key-positions = <19 20>;
-        };
-
-        middle_brackets {
-            bindings = <&middleBrackets>;
-            key-positions = <31 32>;
-        };
-
-        big_brackets {
-            bindings = <&bigBrackets>;
-            key-positions = <7 8>;
-        };
-
         minus {
             bindings = <&kp MINUS>;
             key-positions = <8 9>;
@@ -95,6 +80,21 @@
         game_toggle {
             bindings = <&tog GAME>;
             key-positions = <2 11 13>;
+        };
+
+        mouse-button1 {
+            bindings = <&mkp MB1>;
+            key-positions = <18 19>;
+        };
+
+        mouse-button2 {
+            bindings = <&mkp MB2>;
+            key-positions = <20 21>;
+        };
+
+        mouse-button3 {
+            bindings = <&lt_scroll 5 MCLK>;
+            key-positions = <19 20>;
         };
     };
 
@@ -197,9 +197,9 @@
 
         win_layer {
             bindings = <
-&kp Q      &kp W           &kp E         &kp R            &kp T                                                 &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A      &kp S           &kp D         &kp F            &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &lt MOUSE SEMICOLON
-&kp Z      &kp X           &kp C         &kp V            &kp B        &kp COLON           &kp SEMICOLON        &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp Q      &kp W              &kp E         &kp R            &kp T                                                     &kp Y          &kp U  &kp I      &kp O    &kp P
+&kp A      &kp S              &kp D         &kp F            &kp G            &kp LS(LG(S))       &kp MINUS            &kp H          &kp J  &kp K      &kp L    &lt MOUSE SEMICOLON
+&kp Z      &kp X              &kp C         &kp V            &kp B            &kp COLON           &kp SEMICOLON        &kp N          &kp M  &kp COMMA  &kp DOT  &kp SLASH
 &kp LSHFT  &lt GAME LEFT_WIN  &kp LEFT_ALT  &lt ARROW LANG1  &lt MOUSE SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt NUM ENTER                             &lt FUNCTION A
             >;
 
@@ -208,10 +208,10 @@
 
         mac_layer {
             bindings = <
-&lt WIN_LAYER Q           &kp W  &kp E         &kp R            &kp T                                                          &kp Y        &kp U  &lt MOUSE I    &kp O    &kp P
-&kp A             &kp S  &kp D         &kp F            &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
-&mt LEFT_SHIFT Z  &kp X  &kp C         &kp V            &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION F13  &lt ARROW SPACE  &lt_to_layer_0 FUNCTION INT_MUHENKAN      &kp BACKSPACE  &lt WIN_LAYER ENTER                             &kp DEL
+&lt WIN_LAYER Q   &kp W  &kp E         &kp R             &kp T                                                                     &kp Y                &kp U  &lt MOUSE I  &kp O    &kp P
+&kp A             &kp S  &kp D         &kp F             &kp G            &kp LS(LG(S))                             &kp MINUS      &kp H                &kp J  &kp K        &kp L    &kp SEMICOLON
+&mt LEFT_SHIFT Z  &kp X  &kp C         &kp V             &kp B            &kp COLON                                 &kp SEMICOLON  &kp N                &kp M  &kp COMMA    &kp DOT  &kp SLASH
+&kp LCTRL         &kp M  &kp LEFT_ALT  &lt FUNCTION F13  &lt ARROW SPACE  &lt_to_layer_0 FUNCTION INT_MUHENKAN      &kp BACKSPACE  &lt WIN_LAYER ENTER                               &kp DEL
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -261,10 +261,10 @@
 
         game {
             bindings = <
-&kp ESC         &kp Q   &kp W   &kp E  &kp R                           &trans  &trans  &trans  &trans  &trans
-&kp LEFT_SHIFT  &kp A   &kp S   &kp D  &kp F      &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&kp Z           &kp X   &kp C   &kp V  &kp B      &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans  &trans  &kp T  &kp SPACE  &lt 8 G      &trans  &trans                          &trans
+&kp ESC      &kp Q   &kp W   &kp E  &kp R                           &trans  &trans  &trans  &trans  &trans
+&kp TAB      &kp A   &kp S   &kp D  &kp F      &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&mt LSHFT Z  &kp X   &kp C   &kp V  &kp B      &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans  &trans  &kp T  &kp SPACE  &lt 8 G      &trans  &trans                          &trans
             >;
         };
 
