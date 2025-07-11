@@ -259,7 +259,7 @@
             sensor-bindings = <&encoder_cw_ccw>;
         };
 
-        game {
+        GAME {
             bindings = <
 &kp ESC      &kp Q   &kp W   &kp E  &kp R                           &trans  &trans  &trans  &trans  &trans
 &kp TAB      &kp A   &kp S   &kp D  &kp F      &trans       &trans  &trans  &trans  &trans  &trans  &trans
