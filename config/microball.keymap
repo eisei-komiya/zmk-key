@@ -198,9 +198,9 @@
         win_layer {
             bindings = <
 &kp Q      &kp W           &kp E         &kp R        &kp T                                                 &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A      &kp S           &kp D         &kp F        &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &lt 0 SEMICOLON
+&kp A      &kp S           &kp D         &kp F        &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &kp Z      &kp X           &kp C         &kp V        &kp B        &kp COLON           &kp SEMICOLON        &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LSHFT  &lt 5 LEFT_WIN  &kp LEFT_ALT  &lt 4 LANG1  &lt 0 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 0 ENTER                             &lt 3 A
+&kp LSHFT  &lt 7 LEFT_WIN  &kp LEFT_ALT  &lt 4 LANG1  &lt 8 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 5 ENTER                             &kp RIGHT_SHIFT
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -229,7 +229,7 @@
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans            &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &lt_scroll 0 MB3  &mkp MB2  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &lt_scroll 6 MB3  &mkp MB2  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans            &trans    &trans
 &kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                        &trans
             >;
