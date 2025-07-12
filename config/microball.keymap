@@ -37,11 +37,6 @@
             key-positions = <12 13>;
         };
 
-        double_quotation {
-            bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
-        };
-
         eq {
             bindings = <&kp EQUAL>;
             key-positions = <24 25>;
@@ -63,7 +58,7 @@
         };
 
         bluetoothe_layer_active {
-            bindings = <&mo 0>;
+            bindings = <&mo 5>;
             key-positions = <9 5>;
         };
 
@@ -78,7 +73,7 @@
         };
 
         game_toggle {
-            bindings = <&tog GAME>;
+            bindings = <&tog 2>;
             key-positions = <2 11 13>;
         };
 
@@ -93,7 +88,7 @@
         };
 
         mouse-button3 {
-            bindings = <&lt_scroll SCROLL MCLK>;
+            bindings = <&lt_scroll 7 MCLK>;
             key-positions = <19 20>;
         };
     };
@@ -198,9 +193,9 @@
         win_layer {
             bindings = <
 &kp Q      &kp W           &kp E         &kp R        &kp T                                                 &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A      &kp S           &kp D         &kp F        &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &lt 0 SEMICOLON
+&kp A      &kp S           &kp D         &kp F        &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &kp Z      &kp X           &kp C         &kp V        &kp B        &kp COLON           &kp SEMICOLON        &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LSHFT  &lt 5 LEFT_WIN  &kp LEFT_ALT  &lt 4 LANG1  &lt 0 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 0 ENTER                             &lt 3 A
+&kp LSHFT  &lt 5 LEFT_WIN  &kp LEFT_ALT  &lt 3 LANG1  &lt 6 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 4 ENTER                             &kp RIGHT_SHIFT
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -211,7 +206,7 @@
 &lt 0 Q           &kp W  &kp E         &kp R      &kp T                                                          &kp Y        &kp U  &lt 0 I    &kp O    &kp P
 &kp A             &kp S  &kp D         &kp F      &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X  &kp C         &kp V      &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp M  &kp LEFT_ALT  &lt 3 F13  &lt 4 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
+&kp LCTRL         &kp M  &kp LEFT_ALT  &lt 0 F13  &lt 3 SPACE  &lt_to_layer_0 0 INT_MUHENKAN      &kp BACKSPACE  &lt 0 ENTER                             &kp DEL
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -223,15 +218,6 @@
 &kp TAB      &kp A   &kp S   &kp D  &kp F      &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &mt LSHFT Z  &kp X   &kp C   &kp V  &kp B      &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &trans       &trans  &trans  &kp T  &kp SPACE  &lt 0 G      &trans  &trans                          &trans
-            >;
-        };
-
-        MOUSE {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans            &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &lt_scroll 0 MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans            &trans    &trans
-&kp A   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                        &trans
             >;
         };
 
@@ -257,17 +243,6 @@
             sensor-bindings = <&encoder_cw_ccw>;
         };
 
-        SCROLL {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-
-            sensor-bindings = <&encoder_cw_ccw>;
-        };
-
         BLUETOOTH {
             bindings = <
 &trans  &bt0          &trans        &trans        &trans                           &bt0    &bt1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
@@ -284,6 +259,17 @@
 &mt LEFT_SHIFT N0  &kp N7        &kp N8  &kp N9  &kp PERIOD    &kp EQUAL                    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
 &trans             &trans        &kp N0  &trans  &trans        &trans                       &trans          &trans                                                                     &kp PIPE
             >;
+        };
+
+        SCROLL {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+
+            sensor-bindings = <&encoder_cw_ccw>;
         };
     };
 };
