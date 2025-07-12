@@ -187,6 +187,14 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&mkp>;
         };
+
+        lt_ime: layer_tap_ime {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_IME";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&ime_toggle>;
+        };
     };
 
     keymap {
@@ -197,7 +205,7 @@
 &kp Q      &kp W           &kp E         &kp R        &kp T                                                 &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp A      &kp S           &kp D         &kp F        &kp G        &kp LS(LG(S))       &kp MINUS            &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &kp Z      &kp X           &kp C         &kp V        &kp B        &kp COLON           &kp SEMICOLON        &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LSHFT  &lt 5 LEFT_WIN  &kp LEFT_ALT  &lt 3 ime_toggle  &lt 6 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 4 ENTER                             &kp RIGHT_SHIFT
+&kp LSHFT  &lt 5 LEFT_WIN  &kp LEFT_ALT  &lt_ime 3 0  &lt 6 SPACE  &kp LEFT_SHIFT      &mt LCTRL BACKSPACE  &lt 4 ENTER                             &kp RIGHT_SHIFT
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
