@@ -31,10 +31,34 @@ if ($btclean) {
         # Bluetooth cleanup function
         Write-Host "Starting Bluetooth device cleanup..." -ForegroundColor Yellow
         
-        # Check if btdiscovery is available
+        # Fixed microball MAC address
+        $fixedMicroballMac = "fd:e8:43:b5:2d:45"
+        Write-Host "Using fixed microball MAC address: $fixedMicroballMac" -ForegroundColor Cyan
+        
+        # Check if btpair is available for direct removal
+        if (Get-Command "btpair.exe" -ErrorAction SilentlyContinue) {
+            Write-Host "Attempting direct removal of microball device..." -ForegroundColor Blue
+            try {
+                $removeResult = & btpair.exe -u -b"$fixedMicroballMac" 2>&1 | Out-String
+                Write-Host "--- btpair.exe -u -b`"$fixedMicroballMac`" output ---" -ForegroundColor Gray
+                Write-Host $removeResult -ForegroundColor Gray
+                Write-Host "--- End of btpair output ---" -ForegroundColor Gray
+                
+                if ($removeResult -match "successfully" -or $removeResult -match "removed" -or $removeResult -notmatch "error|fail") {
+                    Write-Host "Successfully removed microball device: $fixedMicroballMac" -ForegroundColor Green
+                } else {
+                    Write-Host "Device might not be paired or already removed" -ForegroundColor Yellow
+                }
+            } catch {
+                Write-Host "Direct removal failed: $($_.Exception.Message)" -ForegroundColor Yellow
+                Write-Host "Trying discovery-based removal..." -ForegroundColor Blue
+            }
+        }
+        
+        # Fallback: Check if btdiscovery is available
         if (Get-Command "btdiscovery.exe" -ErrorAction SilentlyContinue) {
             try {
-                Write-Host "Discovering all paired devices..." -ForegroundColor Blue
+                Write-Host "Verifying removal with device discovery..." -ForegroundColor Blue
                 
                 # First check what switches are available
                 $helpResult = & btdiscovery.exe -? 2>&1 | Out-String
@@ -250,10 +274,30 @@ if ($init) {
     Write-Host ""
     Write-Host "Step 1: Bluetooth device cleanup..." -ForegroundColor Yellow
     
-    # Check if btdiscovery is available
-    if (Get-Command "btdiscovery.exe" -ErrorAction SilentlyContinue) {
+    # Fixed microball MAC address
+    $fixedMicroballMac = "fd:e8:43:b5:2d:45"
+    Write-Host "Using fixed microball MAC address: $fixedMicroballMac" -ForegroundColor Cyan
+    
+    # Check if btpair is available for direct removal
+    if (Get-Command "btpair.exe" -ErrorAction SilentlyContinue) {
+        Write-Host "Attempting direct removal of microball device..." -ForegroundColor Blue
         try {
-            Write-Host "Discovering existing microball devices..." -ForegroundColor Blue
+            $removeResult = & btpair.exe -u -b"$fixedMicroballMac" 2>&1 | Out-String
+            Write-Host "--- btpair.exe -u -b`"$fixedMicroballMac`" output ---" -ForegroundColor Gray
+            Write-Host $removeResult -ForegroundColor Gray
+            Write-Host "--- End of btpair output ---" -ForegroundColor Gray
+            
+            if ($removeResult -match "successfully" -or $removeResult -match "removed" -or $removeResult -notmatch "error|fail") {
+                Write-Host "Successfully removed microball device: $fixedMicroballMac" -ForegroundColor Green
+            } else {
+                Write-Host "Device might not be paired or already removed" -ForegroundColor Yellow
+            }
+        } catch {
+            Write-Host "Direct removal failed: $($_.Exception.Message)" -ForegroundColor Yellow
+        }
+    } elseif (Get-Command "btdiscovery.exe" -ErrorAction SilentlyContinue) {
+        try {
+            Write-Host "btcom not available, using discovery method..." -ForegroundColor Blue
             
             # Discover paired devices
             $discResult = & btdiscovery.exe 2>&1 | Out-String
@@ -262,46 +306,18 @@ if ($init) {
             Write-Host $discResult -ForegroundColor Gray
             Write-Host "--- End of btdiscovery output ---" -ForegroundColor Gray
             
-            # Look for microball devices
-            $microballLines = @()
-            $discResult -split "`n" | ForEach-Object {
-                $line = $_.Trim()
-                if ($line -match "microball" -or $line -match "Microball" -or $line -match "MICROBALL") {
-                    $microballLines += $line
-                    Write-Host "  Found microball line: $line" -ForegroundColor Green
+            # Look for fixed MAC address
+            if ($discResult -match $fixedMicroballMac) {
+                Write-Host "Found fixed microball device - removing..." -ForegroundColor Green
+                try {
+                    $removeResult = & btcom.exe -u $fixedMicroballMac 2>&1 | Out-String
+                    Write-Host "  Remove result: $removeResult" -ForegroundColor Gray
+                    Write-Host "  Removed: $fixedMicroballMac" -ForegroundColor Green
+                } catch {
+                    Write-Host "  Failed to remove $fixedMicroballMac : $($_.Exception.Message)" -ForegroundColor Red
                 }
-            }
-            
-            if ($microballLines.Count -gt 0) {
-                Write-Host "Found $($microballLines.Count) microball device(s) - removing..." -ForegroundColor Green
-                
-                # Extract device addresses
-                $deviceAddresses = @()
-                foreach ($line in $microballLines) {
-                    if ($line -match "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}") {
-                        $address = [regex]::Match($line, "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}").Value
-                        if ($address -and $deviceAddresses -notcontains $address) {
-                            $deviceAddresses += $address
-                            Write-Host "  Found device address: $address" -ForegroundColor Cyan
-                        }
-                    }
-                }
-                
-                # Remove each device
-                foreach ($addr in $deviceAddresses) {
-                    Write-Host "Removing device: $addr" -ForegroundColor Yellow
-                    try {
-                        $removeResult = & btcom.exe -u $addr 2>&1 | Out-String
-                        Write-Host "  Remove result: $removeResult" -ForegroundColor Gray
-                        Write-Host "  Removed: $addr" -ForegroundColor Green
-                    } catch {
-                        Write-Host "  Failed to remove $addr : $($_.Exception.Message)" -ForegroundColor Red
-                    }
-                }
-                
-                Write-Host "Bluetooth device cleanup completed!" -ForegroundColor Green
             } else {
-                Write-Host "No microball devices found" -ForegroundColor Blue
+                Write-Host "Fixed microball MAC address not found in paired devices" -ForegroundColor Blue
             }
         } catch {
             Write-Host "Bluetooth cleanup failed: $($_.Exception.Message)" -ForegroundColor Red
@@ -375,247 +391,58 @@ try {
         if ($removeBt -eq "y") {
             Write-Host "Attempting to remove microball Bluetooth devices using Bluetooth Command Line Tools..." -ForegroundColor Yellow
             
-            # Check if btdiscovery is available
-            if (Get-Command "btdiscovery.exe" -ErrorAction SilentlyContinue) {
+            # Fixed microball MAC address
+            $fixedMicroballMac = "fd:e8:43:b5:2d:45"
+            Write-Host "Using fixed microball MAC address: $fixedMicroballMac" -ForegroundColor Cyan
+            
+            # Check if btpair is available for direct removal
+            if (Get-Command "btpair.exe" -ErrorAction SilentlyContinue) {
+                Write-Host "Attempting direct removal of microball device..." -ForegroundColor Blue
                 try {
-                    Write-Host "Discovering microball devices..." -ForegroundColor Blue
+                    $removeResult = & btpair.exe -u -b"$fixedMicroballMac" 2>&1 | Out-String
+                    Write-Host "--- btpair.exe -u -b`"$fixedMicroballMac`" output ---" -ForegroundColor Gray
+                    Write-Host $removeResult -ForegroundColor Gray
+                    Write-Host "--- End of btpair output ---" -ForegroundColor Gray
                     
-                    # Discover paired devices and find microball devices
+                    if ($removeResult -match "successfully" -or $removeResult -match "removed" -or $removeResult -notmatch "error|fail") {
+                        Write-Host "Successfully removed microball device: $fixedMicroballMac" -ForegroundColor Green
+                    } else {
+                        Write-Host "Device might not be paired or already removed" -ForegroundColor Yellow
+                    }
+                } catch {
+                    Write-Host "Direct removal failed: $($_.Exception.Message)" -ForegroundColor Yellow
+                }
+            } elseif (Get-Command "btdiscovery.exe" -ErrorAction SilentlyContinue) {
+                try {
+                    Write-Host "btcom not available, using discovery method..." -ForegroundColor Blue
+                    
+                    # Discover paired devices and find fixed MAC address
                     $discResult = & btdiscovery.exe 2>&1 | Out-String
                     
                     Write-Host "--- btdiscovery.exe output ---" -ForegroundColor Gray
                     Write-Host $discResult -ForegroundColor Gray
                     Write-Host "--- End of btdiscovery output ---" -ForegroundColor Gray
                     
-                    # Look for microball devices with more flexible matching
-                    $microballLines = @()
-                    $discResult -split "`n" | ForEach-Object {
-                        $line = $_.Trim()
-                        if ($line -match "microball" -or $line -match "Microball" -or $line -match "MICROBALL") {
-                            $microballLines += $line
-                            Write-Host "  Found microball line: $line" -ForegroundColor Green
-                        }
-                    }
-                    
-                    if ($microballLines.Count -gt 0) {
-                        Write-Host "microball devices found in paired devices ($($microballLines.Count) lines)" -ForegroundColor Green
-                        
-                        # Extract device addresses from discovery output
-                        $deviceAddresses = @()
-                        foreach ($line in $microballLines) {
-                            if ($line -match "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}") {
-                                $address = [regex]::Match($line, "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}").Value
-                                if ($address -and $deviceAddresses -notcontains $address) {
-                                    $deviceAddresses += $address
-                                    Write-Host "  Found device address: $address" -ForegroundColor Cyan
-                                }
-                            }
-                        }
-                        
-                        if ($deviceAddresses.Count -eq 0) {
-                            Write-Host "No MAC addresses found in microball device lines" -ForegroundColor Yellow
-                            Write-Host "Trying to extract addresses from all sources..." -ForegroundColor Yellow
-                            
-                            # Try to find all MAC addresses and let user choose
-                            $allAddresses = @()
-                            $allResults -split "`n" | ForEach-Object {
-                                if ($_ -match "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}") {
-                                    $address = [regex]::Match($_, "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}").Value
-                                    if ($address -and $allAddresses -notcontains $address) {
-                                        $allAddresses += $address
-                                        Write-Host "  Available address: $address" -ForegroundColor Gray
-                                    }
-                                }
-                            }
-                            
-                            # Also check registry for MAC addresses
-                            try {
-                                $regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices"
-                                if (Test-Path $regPath) {
-                                    $regDevices = Get-ChildItem $regPath -ErrorAction SilentlyContinue
-                                    foreach ($regDev in $regDevices) {
-                                        $deviceName = $regDev.Name
-                                        if ($deviceName -match "([0-9A-F]{2}){12}") {
-                                            # Convert registry format to MAC address
-                                            $macFromReg = [regex]::Match($deviceName, "([0-9A-F]{2}){12}").Value
-                                            if ($macFromReg) {
-                                                $formattedMac = ""
-                                                for ($i = 0; $i -lt $macFromReg.Length; $i += 2) {
-                                                    if ($i -gt 0) { $formattedMac += ":" }
-                                                    $formattedMac += $macFromReg.Substring($i, 2)
-                                                }
-                                                if ($allAddresses -notcontains $formattedMac) {
-                                                    $allAddresses += $formattedMac
-                                                    Write-Host "  Registry address: $formattedMac" -ForegroundColor Gray
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            } catch {
-                                Write-Host "Registry check failed: $($_.Exception.Message)" -ForegroundColor Yellow
-                            }
-                            
-                            if ($allAddresses.Count -gt 0) {
-                                Write-Host "Please check addresses manually and specify which to remove" -ForegroundColor Yellow
-                            }
-                        } else {
-                            # Remove each device using btcom
-                            foreach ($addr in $deviceAddresses) {
-                                Write-Host "Removing device: $addr" -ForegroundColor Yellow
-                                try {
-                                    $removeResult = & btcom.exe -u $addr 2>&1 | Out-String
-                                    Write-Host "  Remove result: $removeResult" -ForegroundColor Gray
-                                    Write-Host "  Removed: $addr" -ForegroundColor Green
-                                } catch {
-                                    Write-Host "  Failed to remove $addr : $($_.Exception.Message)" -ForegroundColor Red
-                                }
-                            }
-                        }
-                        
-                        Write-Host "Bluetooth device removal completed!" -ForegroundColor Green
-                        
-                        # Ask for re-pairing
-                        Write-Host ""
-                        $repair = Read-Host "Re-pair microball devices? (y/n)"
-                        
-                        if ($repair -eq "y") {
-                            Write-Host "Starting discovery for re-pairing..." -ForegroundColor Cyan
-                            Write-Host "Please put your microball devices in pairing mode" -ForegroundColor Yellow
-                            Read-Host "Press Enter when devices are ready for pairing"
-                            
-                            # Discover available devices
-                            Write-Host "Discovering available devices..." -ForegroundColor Blue
-                            $newDiscResult = & btdiscovery.exe 2>&1 | Out-String
-                            
-                            # Find microball devices
-                            $newAddresses = @()
-                            $newDiscResult -split "`n" | ForEach-Object {
-                                if ($_ -match "microball" -and $_ -match "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}") {
-                                    $address = [regex]::Match($_, "([0-9A-F]{2}[:-]){5}[0-9A-F]{2}").Value
-                                    if ($address) {
-                                        $newAddresses += $address
-                                        Write-Host "  Found device for pairing: $address" -ForegroundColor Gray
-                                    }
-                                }
-                            }
-                            
-                            # Pair each device
-                            foreach ($addr in $newAddresses) {
-                                Write-Host "Pairing with device: $addr" -ForegroundColor Cyan
-                                try {
-                                    & btpair.exe -b $addr 2>$null
-                                    Write-Host "  Paired: $addr" -ForegroundColor Green
-                                } catch {
-                                    Write-Host "  Failed to pair with $addr" -ForegroundColor Yellow
-                                }
-                            }
-                            
-                            if ($newAddresses.Count -eq 0) {
-                                Write-Host "No microball devices found for pairing" -ForegroundColor Yellow
-                                Write-Host "Please check device pairing mode and try manual pairing" -ForegroundColor Yellow
-                            }
+                    # Look for fixed MAC address
+                    if ($discResult -match $fixedMicroballMac) {
+                        Write-Host "Found fixed microball device - removing..." -ForegroundColor Green
+                        try {
+                            $removeResult = & btcom.exe -u $fixedMicroballMac 2>&1 | Out-String
+                            Write-Host "  Remove result: $removeResult" -ForegroundColor Gray
+                            Write-Host "  Removed: $fixedMicroballMac" -ForegroundColor Green
+                        } catch {
+                            Write-Host "  Failed to remove $fixedMicroballMac : $($_.Exception.Message)" -ForegroundColor Red
                         }
                     } else {
-                        Write-Host "No microball devices found in paired devices" -ForegroundColor Blue
-                        Write-Host "Checking for any devices with similar names..." -ForegroundColor Blue
-                        
-                        # Show all device names for manual inspection
-                        $allDeviceNames = @()
-                        $allResults -split "`n" | ForEach-Object {
-                            $line = $_.Trim()
-                            if ($line -and $line -notmatch "^Bluetooth" -and $line -notmatch "^Discovering" -and $line -notmatch "^Invalid" -and $line -notmatch "^---" -and $line -notmatch "^$") {
-                                $allDeviceNames += $line
-                            }
-                        }
-                        
-                        # Also try PowerShell methods for paired devices
-                        Write-Host "Trying PowerShell methods..." -ForegroundColor Blue
-                        try {
-                            $psDevices = Get-PnpDevice -Class "Bluetooth" -Status "OK" | Where-Object { $_.FriendlyName -ne $null }
-                            if ($psDevices) {
-                                Write-Host "PowerShell Bluetooth devices:" -ForegroundColor Blue
-                                foreach ($dev in $psDevices) {
-                                    Write-Host "  $($dev.FriendlyName)" -ForegroundColor Gray
-                                    if ($dev.FriendlyName -match "microball" -or $dev.FriendlyName -match "Microball" -or $dev.FriendlyName -match "MICROBALL") {
-                                        Write-Host "    ^ Found microball device!" -ForegroundColor Green
-                                    }
-                                }
-                            }
-                            
-                            # Also check Windows Registry for paired devices
-                            Write-Host "Checking Windows Registry..." -ForegroundColor Blue
-                            $regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices"
-                            if (Test-Path $regPath) {
-                                $regDevices = Get-ChildItem $regPath -ErrorAction SilentlyContinue
-                                if ($regDevices) {
-                                    Write-Host "Registry Bluetooth devices:" -ForegroundColor Blue
-                                    foreach ($regDev in $regDevices) {
-                                        $name = (Get-ItemProperty -Path $regDev.PSPath -Name "Name" -ErrorAction SilentlyContinue).Name
-                                        if ($name) {
-                                            Write-Host "  $name" -ForegroundColor Gray
-                                            if ($name -match "microball" -or $name -match "Microball" -or $name -match "MICROBALL") {
-                                                Write-Host "    ^ Found microball device in registry!" -ForegroundColor Green
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            # Try Windows netsh command for Bluetooth devices
-                            Write-Host "Trying Windows netsh command..." -ForegroundColor Blue
-                            try {
-                                $netshResult = & netsh.exe advfirewall firewall show rule name=all | Out-String
-                                if ($netshResult -match "microball") {
-                                    Write-Host "Found microball in firewall rules" -ForegroundColor Green
-                                }
-                            } catch {
-                                Write-Host "netsh command failed: $($_.Exception.Message)" -ForegroundColor Yellow
-                            }
-                            
-                            # Alternative: Manual device removal approach
-                            Write-Host ""
-                            Write-Host "=== Manual Bluetooth Cleanup Instructions ===" -ForegroundColor Cyan
-                            Write-Host "1. Windows設定 > デバイス > Bluetooth とその他のデバイス を開く" -ForegroundColor Yellow
-                            Write-Host "2. 'microball' または類似の名前のデバイスを探す" -ForegroundColor Yellow
-                            Write-Host "3. 見つけたら '削除' または 'デバイスの削除' をクリック" -ForegroundColor Yellow
-                            Write-Host "4. その後、以下のコマンドを実行してください:" -ForegroundColor Yellow
-                            Write-Host "   netsh advfirewall firewall delete rule name=all" -ForegroundColor Cyan
-                            Write-Host ""
-                            
-                            $openSettings = Read-Host "Bluetooth設定を開きますか？ (y/n)"
-                            if ($openSettings -eq "y") {
-                                try {
-                                    Start-Process "ms-settings:bluetooth"
-                                    Write-Host "Bluetooth設定を開きました" -ForegroundColor Green
-                                } catch {
-                                    Write-Host "設定を開けませんでした" -ForegroundColor Red
-                                }
-                            }
-                        } catch {
-                            Write-Host "PowerShell method failed: $($_.Exception.Message)" -ForegroundColor Yellow
-                        }
-                        
-                        if ($allDeviceNames.Count -gt 0) {
-                            Write-Host "All paired devices:" -ForegroundColor Blue
-                            foreach ($name in $allDeviceNames) {
-                                Write-Host "  $name" -ForegroundColor Gray
-                            }
-                        }
+                        Write-Host "Fixed microball MAC address not found in paired devices" -ForegroundColor Blue
                     }
-                } catch {
-                    Write-Host "Error using Bluetooth Command Line Tools: $($_.Exception.Message)" -ForegroundColor Red
-                    Write-Host "Falling back to manual removal..." -ForegroundColor Yellow
                     
-                    try {
-                        Start-Process "ms-settings:bluetooth"
-                        Write-Host "Bluetooth settings opened for manual removal" -ForegroundColor Green
-                    } catch {
-                        Write-Host "Could not open Bluetooth settings" -ForegroundColor Red
-                    }
+                    Write-Host "Bluetooth device removal completed!" -ForegroundColor Green
+                } catch {
+                    Write-Host "Error using discovery method: $($_.Exception.Message)" -ForegroundColor Red
                 }
             } else {
-                Write-Host "Bluetooth Command Line Tools not found" -ForegroundColor Red
+                Write-Host "No Bluetooth Command Line Tools found" -ForegroundColor Red
                 Write-Host "Please install from: https://bluetoothinstaller.com/bluetooth-command-line-tools" -ForegroundColor Yellow
                 Write-Host "Opening Bluetooth settings for manual removal..." -ForegroundColor Yellow
                 
@@ -644,3 +471,5 @@ Write-Host "Usage examples:" -ForegroundColor Blue
 Write-Host "  .\up-firm.ps1 -side L           # Update left side firmware" -ForegroundColor Gray
 Write-Host "  .\up-firm.ps1 -side R -init     # Update right side with settings reset" -ForegroundColor Gray
 Write-Host "  .\up-firm.ps1 -btclean          # Bluetooth device cleanup only" -ForegroundColor Gray
+Write-Host ""
+Write-Host "Note: Script uses fixed microball MAC address: fd:e8:43:b5:2d:45" -ForegroundColor Yellow
