@@ -19,12 +19,6 @@
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&scaler 2 3>;
-    };
-
-    scaler: scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
     };
 };
 
