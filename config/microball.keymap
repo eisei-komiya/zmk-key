@@ -205,7 +205,7 @@
         win_layer {
             bindings = <
 &kp Q      &kp W         &kp E         &kp R        &kp T                                                      &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A      &kp S         &kp D         &kp F        &kp G        &kp LS(LG(S))      &kp MINUS                  &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
+&kp A      &kp S         &kp D         &kp F        &kp G        &kp LS(LG(S))      &kp MINUS                  &kp H        &kp J  &kp K      &kp L    &kp ENTER
 &kp Z      &kp X         &kp C         &kp V        &kp B        &kp COLON          &kp SEMICOLON              &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
 &kp LCTRL  &kp LEFT_WIN  &kp LEFT_ALT  &lt_ime 3 0  &lt 6 SPACE  &kp LCTRL          &mt RIGHT_SHIFT BACKSPACE  &lt 4 ENTER                             &kp RIGHT_SHIFT
             >;
@@ -266,10 +266,10 @@
 
         NUM {
             bindings = <
-&kp N1             &kp N2        &kp N3  &kp N4  &kp N5                                       &kp N6            &kp N7             &kp N8          &kp N9           &kp N0
-&kp SLASH          &kp NUMBER_4  &kp N5  &kp N6  &kp ASTERISK  &trans         &kp UNDERSCORE  &kp EXCLAMATION   &kp BACKSLASH      &kp PIPE        &kp SLASH        &kp PERCENT
-&mt LEFT_SHIFT N0  &kp N7        &kp N8  &kp N9  &kp PERIOD    &kp EQUAL      &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp BACKSLASH
-&trans             &trans        &kp N0  &trans  &trans        &trans         &trans          &trans                                                                &kp PIPE
+&kp N1  &kp N2  &kp N3  &kp N4  &kp N5                              &kp N6            &kp N7             &kp N8          &kp N9           &kp N0
+&trans  &trans  &trans  &trans  &trans  &trans      &kp UNDERSCORE  &kp EXCLAMATION   &kp BACKSLASH      &kp PIPE        &kp SLASH        &kp PERCENT
+&trans  &trans  &trans  &trans  &trans  &trans      &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp BACKSLASH
+&trans  &trans  &trans  &trans  &trans  &trans      &trans          &trans                                                                &kp PIPE
             >;
         };
 
