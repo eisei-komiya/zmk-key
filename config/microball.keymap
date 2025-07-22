@@ -74,12 +74,12 @@
 
         mouse-button2 {
             bindings = <&mkp MB2>;
-            key-positions = <20 19>;
+            key-positions = <20 21>;
         };
 
         mouse-button3 {
             bindings = <&lt_scroll 7 MCLK>;
-            key-positions = <20 18>;
+            key-positions = <20 19>;
         };
     };
 
