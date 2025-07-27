@@ -22,16 +22,6 @@
             key-positions = <11 10>;
         };
 
-        shift_tab {
-            bindings = <&kp LS(TAB)>;
-            key-positions = <12 13>;
-        };
-
-        eq {
-            bindings = <&kp EQUAL>;
-            key-positions = <24 25>;
-        };
-
         tg-win {
             bindings = <&bt0>;
             key-positions = <42 33>;
@@ -57,11 +47,6 @@
             key-positions = <8 9>;
         };
 
-        minus2 {
-            bindings = <&kp MINUS>;
-            key-positions = <9 21>;
-        };
-
         game_toggle {
             bindings = <&tog 2>;
             key-positions = <2 11 13>;
@@ -80,6 +65,26 @@
         mouse-button3 {
             bindings = <&lt_scroll 7 MCLK>;
             key-positions = <20 19>;
+        };
+
+        under {
+            bindings = <&kp UNDERSCORE>;
+            key-positions = <32 33>;
+        };
+
+        middle-brackets {
+            bindings = <&middleBrackets>;
+            key-positions = <1 2>;
+        };
+
+        small-bracket {
+            bindings = <&smallBrackets>;
+            key-positions = <11 12>;
+        };
+
+        big-bracket {
+            bindings = <&bigBrackets>;
+            key-positions = <23 24>;
         };
     };
 
@@ -156,15 +161,21 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_conditional_layer 1 0>,
-                <&macro_press>, <&kp LALT>,      // レイヤー1がOFF（Windows）：Alt+Tab
-                <&macro_tap>, <&kp TAB>,
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp TAB>,
                 <&macro_pause_for_release>,
-                <&macro_release>, <&kp LALT>,
-                <&macro_conditional_layer 1 1>,
-                <&macro_press>, <&kp LCMD>,      // レイヤー1がON（Mac）：Cmd+Tab  
-                <&macro_tap>, <&kp TAB>,
+                <&macro_release>,
+                <&kp LALT &macro_conditional_layer 1 1>,
+                <&macro_press>,
+                <&kp LCMD>,
+                <&macro_tap>,
+                <&kp TAB>,
                 <&macro_pause_for_release>,
-                <&macro_release>, <&kp LCMD>;
+                <&macro_release>,
+                <&kp LCMD>;
+
             label = "ALT_TAB_HOLD";
         };
     };
@@ -223,7 +234,7 @@
             bindings = <
 &kp Q      &kp W         &kp E         &kp R          &kp T                                                        &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp A      &kp S         &kp D         &kp F          &kp G        &kp LS(LG(S))        &kp ESC                    &kp H        &kp J  &kp K      &kp L    &kp ENTER
-&kp Z      &kp X         &kp C         &kp V          &kp B        &kp LEFT_ALT         &kp LEFT_WIN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp BACKSPACE
+&kp Z      &kp X         &kp C         &kp V          &kp B        &kp LEFT_ALT         &kp LEFT_WIN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
 &kp LCTRL  &kp LEFT_WIN  &kp LEFT_ALT  &kp LS(LCTRL)  &lt 3 LANG2  &mt LCTRL SPACE      &mt RIGHT_SHIFT BACKSPACE  &lt 6 LANG1                             &kp RIGHT_SHIFT
             >;
 
@@ -252,10 +263,10 @@
 
         ARROW {
             bindings = <
-&trans  &trans  &trans          &trans     &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
+&trans  &trans         &trans          &trans     &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
 &trans  &alt_tab_hold  &kp LEFT_SHIFT  &kp LCTRL  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
-&trans  &trans  &trans          &trans     &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
-&trans  &trans  &trans          &trans     &trans  &trans      &trans  &trans                                                     &trans
+&trans  &trans         &trans          &trans     &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
+&trans  &trans         &trans          &trans     &trans  &trans      &trans  &trans                                                     &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -283,10 +294,10 @@
 
         NUM {
             bindings = <
-&kp N1  &kp N2  &kp N3  &kp N4  &kp N5                              &kp N6            &kp N7             &kp N8          &kp N9           &kp N0
-&trans  &trans  &trans  &trans  &trans  &trans      &kp UNDERSCORE  &kp EXCLAMATION   &kp BACKSLASH      &kp PIPE        &kp SLASH        &kp PERCENT
-&trans  &trans  &trans  &trans  &trans  &trans      &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp BACKSLASH
-&trans  &trans  &trans  &trans  &trans  &trans      &trans          &trans                                                                &kp PIPE
+&kp N1            &kp N2         &kp N3    &kp N4      &kp N5                         &kp N6            &kp N7             &kp N8          &kp N9           &kp N0
+&kp EXCLAMATION   &kp AT_SIGN    &kp HASH  &kp DOLLAR  &kp COLON  &trans      &trans  &kp SEMICOLON     &kp AMPERSAND      &kp ASTERISK    &kp EQUAL        &trans
+&kp SINGLE_QUOTE  &kp BACKSLASH  &kp PIPE  &kp FSLH    &trans     &trans      &trans  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp DOUBLE_QUOTES
+&trans            &trans         &trans    &trans      &trans     &trans      &trans  &trans                                                                &trans
             >;
         };
 
