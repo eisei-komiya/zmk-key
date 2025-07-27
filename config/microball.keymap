@@ -150,6 +150,20 @@
 
             label = "IME_TOGGLE";
         };
+
+        alt_tab_hold: alt_tab_hold {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp TAB>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&kp LALT>;
+            label = "ALT_TAB_HOLD";
+        };
     };
 
     behaviors {
@@ -236,7 +250,7 @@
         ARROW {
             bindings = <
 &trans  &trans  &trans          &trans     &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
-&trans  &trans  &kp LEFT_SHIFT  &kp LCTRL  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
+&trans  &alt_tab_hold  &kp LEFT_SHIFT  &kp LCTRL  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
 &trans  &trans  &trans          &trans     &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
 &trans  &trans  &trans          &trans     &trans  &trans      &trans  &trans                                                     &trans
             >;
