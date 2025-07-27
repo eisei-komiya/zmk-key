@@ -204,10 +204,10 @@
 
         win_layer {
             bindings = <
-&kp Q      &kp W         &kp E         &kp R     &kp T                                                        &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A      &kp S         &kp D         &kp F     &kp G        &kp LS(LG(S))        &kp ESC                    &kp H        &kp J  &kp K      &kp L    &kp ENTER
-&kp Z      &kp X         &kp C         &kp V     &kp B        &lt 4 AT             &trans                     &kp N        &kp M  &kp COMMA  &kp DOT  &kp BACKSPACE
-&kp LCTRL  &kp LEFT_WIN  &kp LEFT_WIN  &kp LALT  &lt 3 LANG2  &mt LCTRL SPACE      &mt RIGHT_SHIFT BACKSPACE  &lt 6 LANG1                             &kp RIGHT_SHIFT
+&kp Q      &kp W         &kp E         &kp R          &kp T                                                        &kp Y        &kp U  &kp I      &kp O    &kp P
+&kp A      &kp S         &kp D         &kp F          &kp G        &kp LS(LG(S))        &kp ESC                    &kp H        &kp J  &kp K      &kp L    &kp ENTER
+&kp Z      &kp X         &kp C         &kp V          &kp B        &kp LEFT_ALT         &kp LEFT_WIN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp BACKSPACE
+&kp LCTRL  &kp LEFT_WIN  &kp LEFT_ALT  &kp LS(LCTRL)  &lt 3 LANG2  &mt LCTRL SPACE      &mt RIGHT_SHIFT BACKSPACE  &lt 6 LANG1                             &kp RIGHT_SHIFT
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -235,10 +235,10 @@
 
         ARROW {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                     &trans
+&trans  &trans  &trans          &trans     &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
+&trans  &trans  &kp LEFT_SHIFT  &kp LCTRL  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
+&trans  &trans  &trans          &trans     &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
+&trans  &trans  &trans          &trans     &trans  &trans      &trans  &trans                                                     &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
