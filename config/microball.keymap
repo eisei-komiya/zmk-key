@@ -291,7 +291,7 @@
             #binding-cells = <0>;
             bindings = <&kp LEFT_ARROW>, <&left_tab>;
 
-            mods = <(MOD_LALT)>;
+            mods = <(MOD_RALT)>;
         };
 
         right_arrow_morph: right_arrow_morph {
@@ -300,7 +300,7 @@
             #binding-cells = <0>;
             bindings = <&kp RIGHT_ARROW>, <&right_tab>;
 
-            mods = <(MOD_LALT)>;
+            mods = <(MOD_RALT)>;
         };
 
         left_arrow_morph_mac: left_arrow_morph_mac {
