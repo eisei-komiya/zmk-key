@@ -86,6 +86,18 @@
             bindings = <&bigBrackets>;
             key-positions = <23 24>;
         };
+
+        arrow-tab-left {
+            bindings = <&ctrl_shift_tab>;
+            key-positions = <0 18>;
+            layers = <3>;
+        };
+
+        arrow-tab-right {
+            bindings = <&ctrl_tab>;
+            key-positions = <0 20>;
+            layers = <3>;
+        };
     };
 
     macros {
@@ -185,6 +197,20 @@
 
             label = "CMD_TAB_HOLD";
         };
+
+        ctrl_tab: ctrl_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(TAB)>;
+            label = "CTRL_TAB";
+        };
+
+        ctrl_shift_tab: ctrl_shift_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(TAB))>;
+            label = "CTRL_SHIFT_TAB";
+        };
     };
 
     behaviors {
@@ -270,7 +296,7 @@
 
         ARROW {
             bindings = <
-&trans  &trans         &trans     &trans     &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
+&kp F13  &trans         &trans     &trans     &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
 &trans  &alt_tab_hold  &kp LCTRL  &kp LSHFT  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
 &trans  &trans         &trans     &trans     &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
 &trans  &trans         &trans     &trans     &trans  &trans      &trans  &trans                                                     &trans
