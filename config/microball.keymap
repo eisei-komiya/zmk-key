@@ -322,10 +322,10 @@
 
         ARROW {
             bindings = <
-&trans  &trans         &trans     &trans     &trans                       &trans    &trans          &kp UP_ARROW    &trans           &trans
-&trans  &alt_tab_hold  &kp LCTRL  &kp LSHFT  &kp F13  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
-&trans  &trans         &trans     &trans     &trans   &trans      &trans  &trans    &trans          &trans          &trans           &trans
-&trans  &trans         &trans     &trans     &trans   &trans      &trans  &trans                                                     &trans
+&trans  &trans         &trans     &trans     &trans                        &trans    &trans               &kp UP_ARROW    &trans                &trans
+&trans  &alt_tab_hold  &kp LCTRL  &kp LSHFT  &kp LALT  &trans      &trans  &kp HOME  &left_arrow_morph    &kp DOWN_ARROW  &right_arrow_morph    &kp END
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans    &trans               &trans          &trans                &trans
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans                                                               &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -373,10 +373,10 @@
 
         ARROW_MAC {
             bindings = <
-&trans  &trans         &trans     &trans     &trans                       &trans    &trans          &kp UP_ARROW    &trans           &trans
-&trans  &cmd_tab_hold  &kp LCTRL  &kp LSHFT  &kp F13  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
-&trans  &trans         &trans     &trans     &trans   &trans      &trans  &trans    &trans          &trans          &trans           &trans
-&trans  &trans         &trans     &trans     &trans   &trans      &trans  &trans                                                     &trans
+&trans  &trans         &trans     &trans     &trans                        &trans    &trans                   &kp UP_ARROW    &trans                    &trans
+&trans  &cmd_tab_hold  &kp LCTRL  &kp LSHFT  &kp LALT  &trans      &trans  &kp HOME  &left_arrow_morph_mac    &kp DOWN_ARROW  &right_arrow_morph_mac    &kp END
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans    &trans                   &trans          &trans                    &trans
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans                                                                       &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
