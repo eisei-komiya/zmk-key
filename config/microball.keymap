@@ -264,7 +264,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <2>;
             bindings = <&kp MACRO_PLACEHOLDER>, <&kp MACRO_PLACEHOLDER>;
-            mods = <(MOD_LALT)>
+            mods = <(MOD_LALT)>;
         };
     };
 
