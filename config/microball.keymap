@@ -185,6 +185,13 @@
 
             label = "CMD_TAB_HOLD";
         };
+
+        param: new_macro {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "NEW_MACRO";
+        };
     };
 
     behaviors {
@@ -230,7 +237,7 @@
             #binding-cells = <0>;
             bindings = <&kp J>, <&kp LS(TAB)>;
 
-            mods = <(MOD_LALT)>;
+            mods = <(MOD_LALT|MOD_LCTL)>;
         };
 
         right_window: right_window {
@@ -239,14 +246,14 @@
             #binding-cells = <0>;
             bindings = <&kp L>, <&kp TAB>;
 
-            mods = <(MOD_LALT)>;
+            mods = <(MOD_LALT|MOD_LCTL)>;
         };
 
         left_window_mac: left_window_mac {
             compatible = "zmk,behavior-mod-morph";
             label = "LEFT_WINDOW_MAC";
             #binding-cells = <0>;
-            bindings = <&kp J>, <&kp LEFT>;
+            bindings = <&left_tab_mac>, <&kp LEFT>;
 
             mods = <(MOD_LGUI)>;
         };
@@ -255,17 +262,27 @@
             compatible = "zmk,behavior-mod-morph";
             label = "RIGHT_WINDOW_MAC";
             #binding-cells = <0>;
-            bindings = <&kp L>, <&kp RIGHT>;
+            bindings = <&right_tab_mac>, <&kp RIGHT>;
 
             mods = <(MOD_LGUI)>;
         };
 
-        multi_mod_behavior: multi_mod_behavior {
+        left_tab_mac: left_tab_mac {
             compatible = "zmk,behavior-mod-morph";
-            label = "AAAA";
-            #binding-cells = <2>;
-            bindings = <&kp MACRO_PLACEHOLDER>, <&kp MACRO_PLACEHOLDER>;
-            mods = <(MOD_LALT)>;
+            label = "LEFT_TAB_MAC";
+            bindings = <&kp J>, <&kp LS(TAB)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL)>;
+        };
+
+        right_tab_mac: right_tab_mac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "RIGHT_TAB_MAC";
+            bindings = <&kp L>, <&kp TAB>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL)>;
         };
     };
 
