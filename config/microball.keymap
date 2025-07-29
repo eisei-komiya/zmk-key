@@ -262,7 +262,7 @@
 
         multi_mod_behavior: multi_mod_behavior {
             compatible = "zmk,behavior-mod-morph";
-            label = "AAAA"
+            label = "AAAA";
             #binding-cells = <2>;
             bindings = <&kp MACRO_PLACEHOLDER>, <&kp MACRO_PLACEHOLDER>;
             mods = <(MOD_LALT)>;
