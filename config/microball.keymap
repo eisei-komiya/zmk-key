@@ -261,7 +261,7 @@
         };
 
         multi_mod_behavior: multi_mod_behavior {
-            compatible = "zmk,behavior-macro-one-param";
+            compatible = "zmk,behavior-mod-morph";
             bindings = <&kp>, <&kp>;
         };
     };
