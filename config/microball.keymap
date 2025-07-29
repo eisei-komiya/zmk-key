@@ -89,13 +89,13 @@
 
         arrow-tab-left {
             bindings = <&ctrl_shift_tab>;
-            key-positions = <0 18>;
+            key-positions = <18 14>;
             layers = <3>;
         };
 
         arrow-tab-right {
             bindings = <&ctrl_tab>;
-            key-positions = <0 20>;
+            key-positions = <20 14>;
             layers = <3>;
         };
     };
