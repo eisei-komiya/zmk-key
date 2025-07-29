@@ -289,27 +289,27 @@
             compatible = "zmk,behavior-mod-morph";
             label = "LEFT_ARROW_MORPH";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_ARROW>, <&left_tab>;
+            bindings = <&kp L>, <&kp LEFT>;
 
-            mods = <(MOD_RALT)>;
+            mods = <(MOD_LALT)>;
         };
 
         right_arrow_morph: right_arrow_morph {
             compatible = "zmk,behavior-mod-morph";
             label = "RIGHT_ARROW_MORPH";
             #binding-cells = <0>;
-            bindings = <&kp RIGHT_ARROW>, <&right_tab>;
+            bindings = <&kp L>, <&kp RIGHT>;
 
-            mods = <(MOD_RALT)>;
+            mods = <(MOD_LALT)>;
         };
 
         left_arrow_morph_mac: left_arrow_morph_mac {
             compatible = "zmk,behavior-mod-morph";
             label = "LEFT_ARROW_MORPH_MAC";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_ARROW>, <&left_tab_mac>;
+            bindings = <&kp L>, <&kp RIGHT>;
 
-            mods = <(MOD_RALT)>;
+            mods = <(MOD_LGUI)>;
         };
 
         right_arrow_morph_mac: right_arrow_morph_mac {
