@@ -290,6 +290,7 @@
             label = "LEFT_ARROW_MORPH";
             #binding-cells = <0>;
             bindings = <&kp LEFT_ARROW>, <&left_tab>;
+
             mods = <(MOD_LALT)>;
         };
 
@@ -298,6 +299,7 @@
             label = "RIGHT_ARROW_MORPH";
             #binding-cells = <0>;
             bindings = <&kp RIGHT_ARROW>, <&right_tab>;
+
             mods = <(MOD_LALT)>;
         };
 
@@ -306,7 +308,8 @@
             label = "LEFT_ARROW_MORPH_MAC";
             #binding-cells = <0>;
             bindings = <&kp LEFT_ARROW>, <&left_tab_mac>;
-            mods = <(MOD_LALT)>;
+
+            mods = <(MOD_RALT)>;
         };
 
         right_arrow_morph_mac: right_arrow_morph_mac {
@@ -314,7 +317,8 @@
             label = "RIGHT_ARROW_MORPH_MAC";
             #binding-cells = <0>;
             bindings = <&kp RIGHT_ARROW>, <&right_tab_mac>;
-            mods = <(MOD_LALT)>;
+
+            mods = <(MOD_RALT)>;
         };
     };
 
@@ -354,10 +358,10 @@
 
         ARROW {
             bindings = <
-&trans  &trans         &trans     &trans     &trans                        &trans    &trans               &kp UP_ARROW    &trans                &trans
-&trans  &alt_tab_hold  &kp LCTRL  &kp LSHFT  &kp LALT  &trans      &trans  &kp HOME  &left_arrow_morph    &kp DOWN_ARROW  &right_arrow_morph    &kp END
-&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans    &trans               &trans          &trans                &trans
-&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans                                                               &trans
+&trans  &trans         &trans     &trans     &trans                        &trans    &trans             &kp UP_ARROW    &trans              &trans
+&trans  &alt_tab_hold  &kp LCTRL  &kp LSHFT  &kp RALT  &trans      &trans  &kp HOME  &left_arrow_morph  &kp DOWN_ARROW  &right_arrow_morph  &kp END
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans    &trans             &trans          &trans              &trans
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans                                                           &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -405,10 +409,10 @@
 
         ARROW_MAC {
             bindings = <
-&trans  &trans         &trans     &trans     &trans                        &trans    &trans                   &kp UP_ARROW    &trans                    &trans
-&trans  &cmd_tab_hold  &kp LCTRL  &kp LSHFT  &kp LALT  &trans      &trans  &kp HOME  &left_arrow_morph_mac    &kp DOWN_ARROW  &right_arrow_morph_mac    &kp END
-&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans    &trans                   &trans          &trans                    &trans
-&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans                                                                       &trans
+&trans  &trans         &trans     &trans     &trans                        &trans    &trans                 &kp UP_ARROW    &trans                  &trans
+&trans  &cmd_tab_hold  &kp LCTRL  &kp LSHFT  &kp LALT  &trans      &trans  &kp HOME  &left_arrow_morph_mac  &kp DOWN_ARROW  &right_arrow_morph_mac  &kp END
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans    &trans                 &trans          &trans                  &trans
+&trans  &trans         &trans     &trans     &trans    &trans      &trans  &trans                                                                   &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
