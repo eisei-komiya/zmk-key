@@ -296,10 +296,10 @@
 
         ARROW {
             bindings = <
-&kp F13  &trans         &trans     &trans     &trans                      &trans    &trans          &kp UP_ARROW    &trans           &trans
-&trans  &alt_tab_hold  &kp LCTRL  &kp LSHFT  &trans  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
-&trans  &trans         &trans     &trans     &trans  &trans      &trans  &trans    &trans          &trans          &trans           &trans
-&trans  &trans         &trans     &trans     &trans  &trans      &trans  &trans                                                     &trans
+&trans  &trans         &trans     &trans     &trans                       &trans    &trans          &kp UP_ARROW    &trans           &trans
+&trans  &alt_tab_hold  &kp LCTRL  &kp LSHFT  &kp F13  &trans      &trans  &kp HOME  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END
+&trans  &trans         &trans     &trans     &trans   &trans      &trans  &trans    &trans          &trans          &trans           &trans
+&trans  &trans         &trans     &trans     &trans   &trans      &trans  &trans                                                     &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
