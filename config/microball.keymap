@@ -259,6 +259,11 @@
 
             mods = <(MOD_LGUI)>;
         };
+
+        multi_mod_behavior: multi_mod_behavior {
+    compatible = "zmk,behavior-macro-one-param";
+    bindings = <&macro_param_1to1 &check_modifiers MACRO_PLACEHOLDER>;
+};
     };
 
     keymap {
