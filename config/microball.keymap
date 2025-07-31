@@ -274,6 +274,7 @@
 
             #binding-cells = <0>;
             mods = <(MOD_LCTL)>;
+            keep-mods = <(MOD_LCTL)>;
         };
 
         right_tab_mac: right_tab_mac {
@@ -283,6 +284,7 @@
 
             #binding-cells = <0>;
             mods = <(MOD_LCTL)>;
+            keep-mods = <(MOD_LCTL)>;
         };
 
         up_window: up_window {
