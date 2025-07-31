@@ -256,6 +256,7 @@
             bindings = <&left_tab_mac>, <&kp LEFT>;
 
             mods = <(MOD_LGUI)>;
+            keep-mods = <(MOD_LGUI)>;
         };
 
         right_window_mac: right_window_mac {
@@ -265,6 +266,7 @@
             bindings = <&right_tab_mac>, <&kp RIGHT>;
 
             mods = <(MOD_LGUI)>;
+            keep-mods = <(MOD_LGUI)>;
         };
 
         left_tab_mac: left_tab_mac {
