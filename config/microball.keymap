@@ -270,7 +270,7 @@
         left_tab_mac: left_tab_mac {
             compatible = "zmk,behavior-mod-morph";
             label = "LEFT_TAB_MAC";
-            bindings = <&kp J>, <&kp LS(TAB)>;
+            bindings = <&kp J>, <&kp LS(LC(TAB))>;
 
             #binding-cells = <0>;
             mods = <(MOD_LCTL)>;
@@ -279,7 +279,7 @@
         right_tab_mac: right_tab_mac {
             compatible = "zmk,behavior-mod-morph";
             label = "RIGHT_TAB_MAC";
-            bindings = <&kp L>, <&kp TAB>;
+            bindings = <&kp L>, <&kp LC(TAB)>;
 
             #binding-cells = <0>;
             mods = <(MOD_LCTL)>;
