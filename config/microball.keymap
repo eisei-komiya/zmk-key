@@ -331,10 +331,10 @@
 
         win_layer {
             bindings = <
-&kp Q      &kp W       &kp E      &kp R          &kp T                                                        &kp Y        &kp U         &up_window    &kp O          &kp P
-&kp A      &kp S       &kp D      &kp F          &kp G        &kp LS(LC(M))        &kp ESC                    &kp H        &left_window  &down_window  &right_window  &kp ENTER
-&kp Z      &kp X       &kp C      &kp V          &kp B        &mo 4                &kp LEFT_WIN               &kp N        &kp M         &kp COMMA     &kp DOT        &kp SLASH
-&kp LCTRL  &kp DELETE  &kp LCTRL  &alt_tab_hold  &lt 3 LANG2  &mt LCTRL SPACE      &mt RIGHT_SHIFT BACKSPACE  &lt 6 LANG1                                             &kp RIGHT_SHIFT
+&kp Q      &kp W       &kp E         &kp R          &kp T                                                        &kp Y        &kp U         &up_window    &kp O          &kp P
+&kp A      &kp S       &kp D         &kp F          &kp G        &kp LS(LC(M))        &kp ESC                    &kp H        &left_window  &down_window  &right_window  &kp ENTER
+&kp Z      &kp X       &kp C         &kp V          &kp B        &mo 4                &kp LEFT_WIN               &kp N        &kp M         &kp COMMA     &kp DOT        &kp SLASH
+&kp LCTRL  &kp DELETE  &kp LEFT_ALT  &alt_tab_hold  &lt 3 LANG2  &mt LCTRL SPACE      &mt RIGHT_SHIFT BACKSPACE  &lt 6 LANG1                                             &kp RIGHT_SHIFT
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
