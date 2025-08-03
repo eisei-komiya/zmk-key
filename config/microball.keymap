@@ -314,6 +314,7 @@
             bindings = <&kp I>, <&kp UP_ARROW>;
 
             mods = <(MOD_LGUI)>;
+            keep-mods = <(MOD_LGUI)>;
         };
 
         down_window_mac: down_window_mac {
@@ -323,6 +324,7 @@
             bindings = <&kp K>, <&kp DOWN>;
 
             mods = <(MOD_LGUI)>;
+            keep-mods = <(MOD_LGUI)>;
         };
     };
 
