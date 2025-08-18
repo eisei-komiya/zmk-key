@@ -209,7 +209,7 @@ if ($btclean) {
 $dlBasePath = "X:\Downloads"
 $zipFile = Join-Path $dlBasePath "firmware.zip"
 $firmwarePath = Join-Path $dlBasePath "firmware"
-$targetDrive = "E:\"
+$targetDrive = "F:\"
 
 # Determine filename
 if ($side -eq "L") {
