@@ -395,7 +395,7 @@
 
         NUM {
             bindings = <
-&kp KP_N1         &kp KP_N2      &kp KP_N3  &kp KP_NUMBER_4  &kp KP_N5                        &kp KP_N6      &kp KP_N7      &kp KP_N8     &kp KP_N9  &kp KP_N0
+&kp 0x97         &kp 0x98      &kp 0x99  &kp 0x9A  &kp 0x9B                        &kp 0x9C      &kp 0x9D      &kp 0x9E     &kp 0x9F  &kp 0x96
 &kp EXCLAMATION   &kp AT_SIGN    &kp HASH   &kp DOLLAR       &kp COLON    &trans      &trans  &kp SEMICOLON  &kp AMPERSAND  &kp ASTERISK  &kp EQUAL  &trans
 &kp SINGLE_QUOTE  &kp BACKSLASH  &kp PIPE   &kp FSLH         &kp PERCENT  &trans      &trans  &trans         &kp PLUS       &kp GRAVE     &kp TILDE  &kp DOUBLE_QUOTES
 &trans            &trans         &trans     &trans           &trans       &trans      &trans  &trans                                                 &trans
