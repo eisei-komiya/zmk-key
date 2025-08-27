@@ -417,9 +417,9 @@
 
         TAB_ARROW {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans       &trans  &trans  &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(TAB)  &trans  &trans  &kp LC(LS(TAB))  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans       &trans  &trans  &trans           &trans
+&trans  &trans  &trans  &trans  &trans                      &trans           &trans  &trans  &trans       &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(LS(TAB))  &trans  &trans  &kp LC(TAB)  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans           &trans  &trans  &trans       &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                        &trans
             >;
         };
