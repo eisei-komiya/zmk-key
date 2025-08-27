@@ -254,6 +254,7 @@
             bindings = <&kp L>, <&kp TAB>;
 
             mods = <(MOD_LALT|MOD_LCTL)>;
+            keep-mods = <(MOD_LCTL|MOD_LALT)>;
         };
 
         left_window_mac: left_window_mac {
@@ -303,6 +304,7 @@
             bindings = <&kp K>, <&kp UP_ARROW>;
 
             mods = <(MOD_LALT)>;
+            keep-mods = <(MOD_LALT)>;
         };
 
         down_window: down_window {
@@ -312,6 +314,7 @@
             bindings = <&kp J>, <&kp DOWN>;
 
             mods = <(MOD_LALT)>;
+            keep-mods = <(MOD_LALT)>;
         };
 
         up_window_mac: up_window_mac {
@@ -340,10 +343,10 @@
 
         win_layer {
             bindings = <
-&kp Q           &kp W       &kp E         &kp R          &kp T                                            &kp Y         &kp U         &kp I         &kp O          &kp P
-&kp A           &kp S       &kp D         &kp F          &kp G        &kp LS(LC(M))        &kp ESC        &left_window  &down_window  &down_window  &right_window  &kp ENTER
-&kp Z           &kp X       &kp C         &kp V          &kp B        &mo 4                &kp LEFT_WIN   &kp N         &kp M         &kp COMMA     &kp DOT        &kp SLASH
-&kp LEFT_SHIFT  &kp DELETE  &kp LEFT_ALT  &alt_tab_hold  &lt 3 LANG2  &mt LCTRL SPACE      &kp BACKSPACE  &lt 6 LANG1                                              &kp RIGHT_SHIFT
+&kp Q           &kp W       &kp E         &kp R          &kp T                                            &kp Y         &kp U         &kp I       &kp O          &kp P
+&kp A           &kp S       &kp D         &kp F          &kp G        &kp LS(LC(M))        &kp ESC        &left_window  &down_window  &up_window  &right_window  &kp ENTER
+&kp Z           &kp X       &kp C         &kp V          &kp B        &mo 4                &kp LEFT_WIN   &kp N         &kp M         &kp COMMA   &kp DOT        &kp SLASH
+&kp LEFT_SHIFT  &kp DELETE  &kp LEFT_ALT  &alt_tab_hold  &lt 3 LANG2  &mt LCTRL SPACE      &kp BACKSPACE  &lt 6 LANG1                                            &kp RIGHT_SHIFT
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
