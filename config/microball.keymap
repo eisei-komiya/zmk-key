@@ -250,6 +250,7 @@
             bindings = <&kp H>, <&kp LS(TAB)>;
 
             mods = <(MOD_LALT|MOD_LCTL)>;
+            keep-mods = <(MOD_LCTL|MOD_LALT)>;
         };
 
         right_window: right_window {
