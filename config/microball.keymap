@@ -242,7 +242,7 @@
             compatible = "zmk,behavior-mod-morph";
             label = "LEFT_WINDOW";
             #binding-cells = <0>;
-            bindings = <&kp J>, <&kp LS(TAB)>;
+            bindings = <&kp H>, <&kp LS(TAB)>;
 
             mods = <(MOD_LALT|MOD_LCTL)>;
         };
@@ -279,7 +279,7 @@
         left_tab_mac: left_tab_mac {
             compatible = "zmk,behavior-mod-morph";
             label = "LEFT_TAB_MAC";
-            bindings = <&kp J>, <&kp LS(LC(TAB))>;
+            bindings = <&kp H>, <&kp LS(LC(TAB))>;
 
             #binding-cells = <0>;
             mods = <(MOD_LCTL)>;
@@ -300,7 +300,7 @@
             compatible = "zmk,behavior-mod-morph";
             label = "UP_WINDOW";
             #binding-cells = <0>;
-            bindings = <&kp I>, <&kp UP_ARROW>;
+            bindings = <&kp K>, <&kp UP_ARROW>;
 
             mods = <(MOD_LALT)>;
         };
@@ -309,7 +309,7 @@
             compatible = "zmk,behavior-mod-morph";
             label = "DOWN_WINDOW";
             #binding-cells = <0>;
-            bindings = <&kp K>, <&kp DOWN>;
+            bindings = <&kp J>, <&kp DOWN>;
 
             mods = <(MOD_LALT)>;
         };
@@ -318,7 +318,7 @@
             compatible = "zmk,behavior-mod-morph";
             label = "UP_WINDOW_MAC";
             #binding-cells = <0>;
-            bindings = <&kp I>, <&kp UP_ARROW>;
+            bindings = <&kp K>, <&kp UP_ARROW>;
 
             mods = <(MOD_LGUI)>;
             keep-mods = <(MOD_LGUI)>;
@@ -328,7 +328,7 @@
             compatible = "zmk,behavior-mod-morph";
             label = "DOWN_WINDOW_MAC";
             #binding-cells = <0>;
-            bindings = <&kp K>, <&kp DOWN>;
+            bindings = <&kp J>, <&kp DOWN>;
 
             mods = <(MOD_LGUI)>;
             keep-mods = <(MOD_LGUI)>;
