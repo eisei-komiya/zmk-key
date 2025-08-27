@@ -261,7 +261,7 @@
             compatible = "zmk,behavior-mod-morph";
             label = "LEFT_WINDOW_MAC";
             #binding-cells = <0>;
-            bindings = <&left_tab_mac>, <&kp LEFT>;
+            bindings = <&kp H>, <&kp LEFT>;
 
             mods = <(MOD_LGUI)>;
             keep-mods = <(MOD_LGUI)>;
@@ -271,30 +271,10 @@
             compatible = "zmk,behavior-mod-morph";
             label = "RIGHT_WINDOW_MAC";
             #binding-cells = <0>;
-            bindings = <&right_tab_mac>, <&kp RIGHT>;
+            bindings = <&kp L>, <&kp RIGHT>;
 
             mods = <(MOD_LGUI)>;
             keep-mods = <(MOD_LGUI)>;
-        };
-
-        left_tab_mac: left_tab_mac {
-            compatible = "zmk,behavior-mod-morph";
-            label = "LEFT_TAB_MAC";
-            bindings = <&kp H>, <&kp LS(LC(TAB))>;
-
-            #binding-cells = <0>;
-            mods = <(MOD_LCTL)>;
-            keep-mods = <(MOD_LCTL)>;
-        };
-
-        right_tab_mac: right_tab_mac {
-            compatible = "zmk,behavior-mod-morph";
-            label = "RIGHT_TAB_MAC";
-            bindings = <&kp L>, <&kp LC(TAB)>;
-
-            #binding-cells = <0>;
-            mods = <(MOD_LCTL)>;
-            keep-mods = <(MOD_LCTL)>;
         };
 
         up_window: up_window {
@@ -374,10 +354,10 @@
 
         ARROW {
             bindings = <
-&trans  &trans  &trans     &trans     &trans                       &trans    &kp HOME  &kp UP_ARROW  &kp LC(RIGHT)  &trans
-&trans  &trans  &kp LCTRL  &kp LSHFT  &kp F12  &trans      &trans  &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp RIGHT      &kp END
-&trans  &trans  &trans     &trans     &trans   &trans      &trans  &trans    &trans    &trans        &trans         &trans
-&trans  &trans  &trans     &trans     &trans   &trans      &trans  &trans                                           &trans
+&trans  &trans  &trans     &trans     &trans                            &trans    &kp HOME  &trans        &trans     &trans
+&trans  &mo 9   &kp LCTRL  &kp LSHFT  &kp LEFT_ALT  &trans      &trans  &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp RIGHT  &kp END
+&trans  &trans  &trans     &trans     &trans        &trans      &trans  &trans    &trans    &trans        &trans     &trans
+&trans  &trans  &trans     &trans     &trans        &trans      &trans  &trans                                       &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -425,10 +405,28 @@
 
         ARROW_MAC {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &kp LG(A)  &trans  &kp LA(RIGHT)  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans     &trans  &trans         &kp LG(E)
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans     &trans  &trans         &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                    &trans
+&trans  &trans  &trans        &trans          &trans                      &trans  &kp LG(A)  &trans  &trans  &trans
+&trans  &trans  &kp LEFT_GUI  &kp LEFT_SHIFT  &mo 9   &trans      &trans  &trans  &trans     &trans  &trans  &kp LG(E)
+&trans  &trans  &trans        &trans          &trans  &trans      &trans  &trans  &trans     &trans  &trans  &trans
+&trans  &trans  &trans        &trans          &trans  &trans      &trans  &trans                             &trans
+            >;
+        };
+
+        TAB_ARROW {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans       &trans  &trans  &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(TAB)  &trans  &trans  &kp LC(LS(TAB))  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans       &trans  &trans  &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                        &trans
+            >;
+        };
+
+        chrome_history {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans                &trans  &trans  &trans                 &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LG(LEFT_BRACKET)  &trans  &trans  &kp LG(RIGHT_BRACKET)  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                &trans  &trans  &trans                 &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                       &trans
             >;
         };
     };
