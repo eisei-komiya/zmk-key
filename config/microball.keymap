@@ -409,7 +409,7 @@
         ARROW_MAC {
             bindings = <
 &trans  &trans  &trans        &trans          &trans                      &trans  &kp LG(A)  &trans  &trans  &trans
-&trans  &trans  &kp LEFT_GUI  &kp LEFT_SHIFT  &mo 9   &trans      &trans  &trans  &trans     &trans  &trans  &kp LG(E)
+&trans  &trans  &kp LEFT_GUI  &kp LEFT_SHIFT  &mo 10  &trans      &trans  &trans  &trans     &trans  &trans  &kp LG(E)
 &trans  &trans  &trans        &trans          &trans  &trans      &trans  &trans  &trans     &trans  &trans  &trans
 &trans  &trans  &trans        &trans          &trans  &trans      &trans  &trans                             &trans
             >;
