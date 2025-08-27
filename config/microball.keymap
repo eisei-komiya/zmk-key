@@ -422,10 +422,10 @@
 
         ARROW_MAC {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans        &kp LA(LEFT)  &trans  &kp LA(RIGHT)  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LG(LEFT)  &trans        &trans  &trans         &kp LG(RIGHT)
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans  &trans         &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &kp LG(A)  &trans  &kp LA(RIGHT)  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans     &trans  &trans         &kp LG(E)
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans     &trans  &trans         &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                    &trans
             >;
         };
     };
