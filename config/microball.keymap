@@ -20,6 +20,7 @@
         tab {
             bindings = <&kp TAB>;
             key-positions = <11 10>;
+            timeout-ms = <200>;
         };
 
         tg-win {
@@ -45,6 +46,7 @@
         minus {
             bindings = <&kp MINUS>;
             key-positions = <8 9>;
+            timeout-ms = <200>;
         };
 
         game_toggle {
@@ -55,39 +57,43 @@
         mouse-button1 {
             bindings = <&mkp MB1>;
             key-positions = <18 19>;
-            timeout-ms = <80>;
+            timeout-ms = <200>;
         };
 
         mouse-button2 {
             bindings = <&mkp MB2>;
             key-positions = <20 21>;
-            timeout-ms = <80>;
+            timeout-ms = <200>;
         };
 
         mouse-button3 {
             bindings = <&lt_scroll 7 MCLK>;
             key-positions = <20 19>;
-            timeout-ms = <80>;
+            timeout-ms = <200>;
         };
 
         under {
             bindings = <&kp UNDERSCORE>;
             key-positions = <32 33>;
+            timeout-ms = <200>;
         };
 
         middle-brackets {
             bindings = <&middleBrackets>;
             key-positions = <1 2>;
+            timeout-ms = <200>;
         };
 
         small-bracket {
             bindings = <&smallBrackets>;
             key-positions = <11 12>;
+            timeout-ms = <200>;
         };
 
         big-bracket {
             bindings = <&bigBrackets>;
             key-positions = <23 24>;
+            timeout-ms = <200>;
         };
     };
 
