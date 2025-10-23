@@ -24,12 +24,12 @@
 
         tg-win {
             bindings = <&bt0>;
-            key-positions = <42 33>;
+            key-positions = <5 6>;
         };
 
         tg-mac {
             bindings = <&bt1>;
-            key-positions = <42 21>;
+            key-positions = <5 7>;
         };
 
         bootcombo {
