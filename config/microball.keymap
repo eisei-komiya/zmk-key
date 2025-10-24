@@ -20,7 +20,7 @@
         tab {
             bindings = <&kp TAB>;
             key-positions = <11 10>;
-            timeout-ms = <200>;
+            timeout-ms = <100>;
         };
 
         tg-win {
