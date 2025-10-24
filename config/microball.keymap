@@ -81,19 +81,19 @@
         middle-brackets {
             bindings = <&middleBrackets>;
             key-positions = <1 2>;
-            timeout-ms = <200>;
+            timeout-ms = <100>;
         };
 
         small-bracket {
             bindings = <&smallBrackets>;
             key-positions = <11 12>;
-            timeout-ms = <200>;
+            timeout-ms = <100>;
         };
 
         big-bracket {
             bindings = <&bigBrackets>;
             key-positions = <23 24>;
-            timeout-ms = <200>;
+            timeout-ms = <100>;
         };
     };
 
