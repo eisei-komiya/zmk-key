@@ -356,10 +356,10 @@
 
         GAME {
             bindings = <
-&kp ESC    &kp Q     &kp W         &kp E    &kp R                            &trans  &trans  &trans  &trans  &trans
-&kp LSHFT  &kp A     &kp S         &kp D    &kp F     &trans         &trans  &trans  &trans  &trans  &trans  &trans
-&kp TAB    &kp X     &kp C         &kp V    &kp B     &trans         &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL  &kp LGUI  &kp LEFT_ALT  &lt 4 T  &lt 11 G  &kp SPACE      &trans  &trans                          &trans
+&kp ESC    &kp Q     &kp W         &kp E  &kp R                            &trans  &trans  &trans  &trans  &trans
+&kp LSHFT  &kp A     &kp S         &kp D  &kp F     &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&kp TAB    &kp Z     &kp X         &kp C  &kp V     &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL  &kp LGUI  &kp LEFT_ALT  &kp B  &lt 11 G  &kp SPACE      &trans  &trans                          &trans
             >;
         };
 
