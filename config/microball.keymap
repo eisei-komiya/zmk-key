@@ -46,7 +46,6 @@
         minus {
             bindings = <&kp MINUS>;
             key-positions = <8 9>;
-            timeout-ms = <200>;
         };
 
         game_toggle {
