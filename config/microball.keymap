@@ -347,7 +347,7 @@
         mac_layer {
             bindings = <
 &kp Q           &kp W       &kp E      &kp R          &kp T                                           &kp Y             &kp U             &kp I           &kp O              &kp P
-&kp A           &kp S       &kp D      &kp F          &kp G        &kp K_MUTE          &kp ESC        &left_window_mac  &down_window_mac  &up_window_mac  &right_window_mac  &kp ENTER
+&kp A           &kp S       &kp D      &kp F          &kp G        &kp C_MUTE          &kp ESC        &left_window_mac  &down_window_mac  &up_window_mac  &right_window_mac  &kp ENTER
 &kp Z           &kp X       &kp C      &kp V          &kp B        &mo 4               &kp LALT       &kp N             &kp M             &kp COMMA       &kp DOT            &kp SLASH
 &kp LEFT_SHIFT  &kp DELETE  &kp LCTRL  &cmd_tab_hold  &lt 3 LANG2  &mt LGUI SPACE      &kp BACKSPACE  &lt 6 LANG1                                                            &kp RIGHT_SHIFT
             >;
