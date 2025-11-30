@@ -275,8 +275,8 @@
             #binding-cells = <0>;
             bindings = <&kp H>, <&kp LEFT>;
 
-            mods = <(MOD_LGUI)>;
-            keep-mods = <(MOD_LGUI)>;
+            mods = <(MOD_LGUI|MOD_RCTL)>;
+            keep-mods = <(MOD_LGUI|MOD_RCTL)>;
         };
 
         right_window_mac: right_window_mac {
@@ -315,8 +315,8 @@
             #binding-cells = <0>;
             bindings = <&kp K>, <&kp UP_ARROW>;
 
-            mods = <(MOD_LGUI)>;
-            keep-mods = <(MOD_LGUI)>;
+            mods = <(MOD_RCTL|MOD_LGUI)>;
+            keep-mods = <(MOD_LGUI|MOD_RCTL)>;
         };
 
         down_window_mac: down_window_mac {
@@ -325,8 +325,8 @@
             #binding-cells = <0>;
             bindings = <&kp J>, <&kp DOWN>;
 
-            mods = <(MOD_LGUI)>;
-            keep-mods = <(MOD_LGUI)>;
+            mods = <(MOD_LGUI|MOD_RCTL)>;
+            keep-mods = <(MOD_LGUI|MOD_RCTL)>;
         };
     };
 
