@@ -208,6 +208,21 @@
             bindings = <&kp KP_NUM>;
             label = "NUMLOCK_ON";
         };
+
+        control_tab_hold: control_tab_hold {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL>,
+                <&macro_tap>,
+                <&kp TAB>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL>;
+
+            label = "CONTROL_TAB_HOLD";
+        };
     };
 
     behaviors {
@@ -366,10 +381,10 @@
 
         ARROW {
             bindings = <
-&trans  &trans  &trans     &trans     &trans                            &trans    &kp HOME  &trans        &trans     &trans
-&trans  &mo 9   &kp LCTRL  &kp LSHFT  &kp LEFT_ALT  &trans      &trans  &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp RIGHT  &kp END
-&trans  &trans  &trans     &trans     &trans        &trans      &trans  &trans    &trans    &trans        &trans     &trans
-&trans  &trans  &trans     &trans     &trans        &trans      &trans  &trans                                       &trans
+&trans  &trans             &trans     &trans     &trans                            &trans    &kp HOME  &trans        &trans     &trans
+&trans  &control_tab_hold  &kp LCTRL  &kp LSHFT  &kp LEFT_ALT  &trans      &trans  &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp RIGHT  &kp END
+&trans  &trans             &trans     &trans     &trans        &trans      &trans  &trans    &trans    &trans        &trans     &trans
+&trans  &trans             &trans     &trans     &trans        &trans      &trans  &trans                                       &trans
             >;
 
             sensor-bindings = <&encoder_cw_ccw>;
@@ -433,7 +448,7 @@
             >;
         };
 
-        chrome_history {
+        browser_history {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans                &trans  &trans  &trans                 &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LG(LEFT_BRACKET)  &trans  &trans  &kp LG(RIGHT_BRACKET)  &trans
