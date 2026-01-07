@@ -57,18 +57,20 @@
             bindings = <&mkp MB1>;
             key-positions = <18 19>;
             timeout-ms = <200>;
+            slow-release;
         };
 
         mouse-button2 {
             bindings = <&mkp MB2>;
             key-positions = <20 21>;
             timeout-ms = <200>;
+            slow-release;
         };
 
         mouse-button3 {
             bindings = <&lt_scroll 7 MCLK>;
             key-positions = <20 19>;
-            timeout-ms = <200>;
+            timeout-ms = <250>;
         };
 
         under {
