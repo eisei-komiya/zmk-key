@@ -9,8 +9,5 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: zmk-pmw3610-driver
-      remote: Yu1812
-      revision: main
   self:
     path: config
