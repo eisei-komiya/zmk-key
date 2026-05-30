@@ -107,14 +107,14 @@
 
         left-parenthesis {
             bindings = <&kp LEFT_PARENTHESIS>;
-            key-positions = <13 14>;
+            key-positions = <12 11>;
             timeout-ms = <100>;
             layers = <6>;
         };
 
         right-parenthesis {
             bindings = <&kp RIGHT_PARENTHESIS>;
-            key-positions = <17 18>;
+            key-positions = <19 20>;
             timeout-ms = <100>;
             layers = <6>;
         };
