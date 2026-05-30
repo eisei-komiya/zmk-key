@@ -86,14 +86,14 @@
 
         left-bracket {
             bindings = <&kp LEFT_BRACKET>;
-            key-positions = <11 12>;
+            key-positions = <23 24>;
             timeout-ms = <100>;
             layers = <6>;
         };
 
         right-bracket {
             bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <23 24>;
+            key-positions = <31 32>;
             timeout-ms = <100>;
             layers = <6>;
         };
@@ -107,7 +107,7 @@
 
         left-parenthesis {
             bindings = <&kp LEFT_PARENTHESIS>;
-            key-positions = <12 13>;
+            key-positions = <13 14>;
             timeout-ms = <100>;
             layers = <6>;
         };
