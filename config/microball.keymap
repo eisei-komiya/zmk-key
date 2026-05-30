@@ -69,6 +69,7 @@
             bindings = <&lt_scroll 7 MCLK>;
             key-positions = <20 19>;
             timeout-ms = <200>;
+            layers = <0 1 2 3 4 5 7 8 9 10 11>;
         };
 
         under {
@@ -86,14 +87,14 @@
 
         left-bracket {
             bindings = <&kp LEFT_BRACKET>;
-            key-positions = <11 12>;
+            key-positions = <23 24>;
             timeout-ms = <100>;
             layers = <6>;
         };
 
         right-bracket {
             bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <23 24>;
+            key-positions = <31 32>;
             timeout-ms = <100>;
             layers = <6>;
         };
@@ -107,14 +108,14 @@
 
         left-parenthesis {
             bindings = <&kp LEFT_PARENTHESIS>;
-            key-positions = <12 13>;
+            key-positions = <12 11>;
             timeout-ms = <100>;
             layers = <6>;
         };
 
         right-parenthesis {
             bindings = <&kp RIGHT_PARENTHESIS>;
-            key-positions = <17 18>;
+            key-positions = <19 20>;
             timeout-ms = <100>;
             layers = <6>;
         };
