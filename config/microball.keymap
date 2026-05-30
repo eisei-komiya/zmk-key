@@ -77,23 +77,46 @@
             timeout-ms = <200>;
         };
 
-        middle-brackets {
-            bindings = <&middleBrackets>;
+        left-brace {
+            bindings = <&kp LEFT_BRACE>;
             key-positions = <1 2>;
             timeout-ms = <100>;
-            layers = <0 1 3 4 5 6 7 8 9 10>;
+            layers = <6>;
         };
 
-        small-bracket {
-            bindings = <&smallBrackets>;
+        left-bracket {
+            bindings = <&kp LEFT_BRACKET>;
             key-positions = <11 12>;
             timeout-ms = <100>;
+            layers = <6>;
         };
 
-        big-bracket {
-            bindings = <&bigBrackets>;
+        right-bracket {
+            bindings = <&kp RIGHT_BRACKET>;
             key-positions = <23 24>;
             timeout-ms = <100>;
+            layers = <6>;
+        };
+
+        right-brace {
+            bindings = <&kp RIGHT_BRACE>;
+            key-positions = <7 8>;
+            timeout-ms = <100>;
+            layers = <6>;
+        };
+
+        left-parenthesis {
+            bindings = <&kp LEFT_PARENTHESIS>;
+            key-positions = <12 13>;
+            timeout-ms = <100>;
+            layers = <6>;
+        };
+
+        right-parenthesis {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <17 18>;
+            timeout-ms = <100>;
+            layers = <6>;
         };
     };
 
@@ -128,27 +151,6 @@
                 <&tog_on 1>;
 
             label = "BT1";
-        };
-
-        smallBrackets: smallBrackets {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
-            label = "SMALLBRACKETS";
-        };
-
-        bigBrackets: bigBrackets {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT>;
-            label = "BIGBRACKETS";
-        };
-
-        middleBrackets: middleBrackets {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT>;
-            label = "MIDDLEBRACKETS";
         };
 
         ime_toggle: ime_toggle {
