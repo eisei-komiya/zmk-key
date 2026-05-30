@@ -69,6 +69,7 @@
             bindings = <&lt_scroll 7 MCLK>;
             key-positions = <20 19>;
             timeout-ms = <200>;
+            layers = <0 1 2 3 4 5 7 8 9 10 11>;
         };
 
         under {
