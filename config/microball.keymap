@@ -232,7 +232,7 @@
         encoder_cw_ccw: encoder_cw_ccw {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&kp PAGE_DOWN>, <&kp PG_UP>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
 
             label = "encoder_cw_ccw";
         };
