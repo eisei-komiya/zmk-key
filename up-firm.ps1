@@ -211,14 +211,59 @@ $zipFile = Join-Path $dlBasePath "firmware.zip"
 $firmwarePath = Join-Path $dlBasePath "firmware"
 $targetDrive = "F:\"
 
-# Determine filename
-if ($side -eq "L") {
-    $fileName = "microball_L-xiao_ble-zmk.uf2"
-} else {
-    $fileName = "microball_R-xiao_ble-zmk.uf2"
+function Resolve-FirmwareFile {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$BasePath,
+
+        [Parameter(Mandatory=$true)]
+        [string[]]$Candidates,
+
+        [Parameter(Mandatory=$true)]
+        [string]$Pattern
+    )
+
+    foreach ($candidate in $Candidates) {
+        $candidatePath = Join-Path $BasePath $candidate
+        if (Test-Path $candidatePath) {
+            return $candidate
+        }
+    }
+
+    $matchedFile = Get-ChildItem -Path $BasePath -Filter $Pattern -File -ErrorAction SilentlyContinue |
+        Sort-Object Name |
+        Select-Object -First 1
+
+    if ($matchedFile) {
+        return $matchedFile.Name
+    }
+
+    return $null
 }
 
-$resetFileName = "settings_reset-xiao_ble-zmk.uf2"
+# Determine filename from actual extracted artifacts
+if ($side -eq "L") {
+    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+        -Candidates @(
+            "microball_L-xiao_ble-zmk.uf2",
+            "microball_L-seeeduino_xiao_ble-zmk.uf2"
+        ) `
+        -Pattern "microball_L-*.uf2"
+} else {
+    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+        -Candidates @(
+            "microball_R-xiao_ble-zmk.uf2",
+            "microball_R-seeeduino_xiao_ble-zmk.uf2"
+        ) `
+        -Pattern "microball_R-*.uf2"
+}
+
+$resetFileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+    -Candidates @(
+        "settings_reset-xiao_ble-zmk.uf2",
+        "settings_reset-seeeduino_xiao_ble-zmk.uf2"
+    ) `
+    -Pattern "settings_reset-*.uf2"
 
 # Check if ZIP file exists or firmware folder already exists
 if (Test-Path $zipFile) {
@@ -252,6 +297,17 @@ $srcFile = Join-Path $firmwarePath $fileName
 $resetSrcFile = Join-Path $firmwarePath $resetFileName
 $dstFile = Join-Path $targetDrive $fileName
 $resetDstFile = Join-Path $targetDrive $resetFileName
+
+# Check file name resolution
+if (-not $fileName) {
+    Write-Host "Error: Could not find firmware file for side $side in $firmwarePath" -ForegroundColor Red
+    exit 1
+}
+
+if ($init -and -not $resetFileName) {
+    Write-Host "Error: Could not find settings reset firmware in $firmwarePath" -ForegroundColor Red
+    exit 1
+}
 
 # Check file exists
 if (-not (Test-Path $srcFile)) {
