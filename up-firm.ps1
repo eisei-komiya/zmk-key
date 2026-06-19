@@ -213,12 +213,12 @@ $targetDrive = "F:\"
 
 # Determine filename
 if ($side -eq "L") {
-    $fileName = "microball_L-seeeduino_xiao_ble-zmk.uf2"
+    $fileName = "microball_L-xiao_ble-zmk.uf2"
 } else {
-    $fileName = "microball_R-seeeduino_xiao_ble-zmk.uf2"
+    $fileName = "microball_R-xiao_ble-zmk.uf2"
 }
 
-$resetFileName = "settings_reset-seeeduino_xiao_ble-zmk.uf2"
+$resetFileName = "settings_reset-xiao_ble-zmk.uf2"
 
 # Check if ZIP file exists or firmware folder already exists
 if (Test-Path $zipFile) {
