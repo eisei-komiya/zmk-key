@@ -1,10 +1,13 @@
 @echo off
 chcp 65001 >nul
+set "BOARD_NAME=xiao_ble-zmk"
+
 if "%1"=="" (
     echo Error: Please specify L or R
     echo Usage: up-firm L or up-firm R
     echo Option: Add --init for settings reset
     echo Example: up-firm R --init
+    echo Target board: %BOARD_NAME%
     pause
     exit /b 1
 )
