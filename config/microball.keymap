@@ -359,7 +359,7 @@
 &kp LEFT_SHIFT  &kp DELETE  &kp LEFT_ALT  &alt_tab_hold  &lt 3 LANG2  &mt LCTRL SPACE      &kp BACKSPACE  &lt 6 LANG1                                            &kp RIGHT_SHIFT
             >;
 
-            sensor-bindings = <&encoder_cw_ccw>;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         mac_layer {
@@ -370,7 +370,7 @@
 &kp LEFT_SHIFT  &kp DELETE  &kp LCTRL  &cmd_tab_hold  &lt 3 LANG2  &mt LGUI SPACE      &kp BACKSPACE  &lt 6 LANG1                                                            &kp RIGHT_SHIFT
             >;
 
-            sensor-bindings = <&encoder_cw_ccw>;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         GAME {
@@ -390,7 +390,7 @@
 &trans  &trans  &trans     &trans              &trans        &trans      &trans  &trans                                       &trans
             >;
 
-            sensor-bindings = <&encoder_cw_ccw>;
+            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
 
         FUNCTION {
@@ -401,7 +401,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&encoder_cw_ccw>;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         BLUETOOTH {
@@ -430,7 +430,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&encoder_cw_ccw>;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         ARROW_MAC {
