@@ -315,6 +315,7 @@ if (Test-Path $zipFile) {
     }
 } elseif (Test-Path $firmwarePath) {
     Write-Host "Using existing firmware folder..." -ForegroundColor Green
+    Write-Host "Warning: Reusing existing extracted firmware. Download a new firmware.zip if you expect recent code changes." -ForegroundColor Yellow
 } else {
     Write-Host "Error: Neither firmware.zip nor firmware folder found" -ForegroundColor Red
     exit 1
@@ -334,6 +335,20 @@ if (-not $fileName) {
 if ($init -and -not $resetFileName) {
     Write-Host "Error: Could not find settings reset firmware in $firmwarePath" -ForegroundColor Red
     exit 1
+}
+
+$firmwareInfo = Get-Item $srcFile -ErrorAction SilentlyContinue
+if ($firmwareInfo) {
+    Write-Host "Selected firmware: $($firmwareInfo.FullName)" -ForegroundColor Cyan
+    Write-Host "Firmware timestamp: $($firmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+}
+
+if ($init -and $resetFileName) {
+    $resetFirmwareInfo = Get-Item $resetSrcFile -ErrorAction SilentlyContinue
+    if ($resetFirmwareInfo) {
+        Write-Host "Selected reset firmware: $($resetFirmwareInfo.FullName)" -ForegroundColor Cyan
+        Write-Host "Reset firmware timestamp: $($resetFirmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+    }
 }
 
 # Check file exists
