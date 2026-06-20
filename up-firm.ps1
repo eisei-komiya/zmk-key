@@ -211,14 +211,62 @@ $zipFile = Join-Path $dlBasePath "firmware.zip"
 $firmwarePath = Join-Path $dlBasePath "firmware"
 $targetDrive = "F:\"
 
-# Determine filename
-if ($side -eq "L") {
-    $fileName = "microball_L-seeeduino_xiao_ble-zmk.uf2"
-} else {
-    $fileName = "microball_R-seeeduino_xiao_ble-zmk.uf2"
+function Resolve-FirmwareFile {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$BasePath,
+
+        [Parameter(Mandatory=$true)]
+        [string[]]$Candidates,
+
+        [Parameter(Mandatory=$true)]
+        [string]$Pattern
+    )
+
+    foreach ($candidate in $Candidates) {
+        $candidatePath = Join-Path $BasePath $candidate
+        if (Test-Path $candidatePath) {
+            return $candidate
+        }
+    }
+
+    $matchedFile = Get-ChildItem -Path $BasePath -Filter $Pattern -File -ErrorAction SilentlyContinue |
+        Sort-Object Name |
+        Select-Object -First 1
+
+    if ($matchedFile) {
+        return $matchedFile.Name
+    }
+
+    return $null
 }
 
-$resetFileName = "settings_reset-seeeduino_xiao_ble-zmk.uf2"
+function Wait-ForDrive {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$DrivePath,
+
+        [Parameter(Mandatory=$false)]
+        [int]$TimeoutSeconds = 60
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+
+    while ((Get-Date) -lt $deadline) {
+        if (Test-Path $DrivePath) {
+            try {
+                Get-ChildItem -Path $DrivePath -ErrorAction Stop | Out-Null
+                return $true
+            } catch {
+                # Drive letter exists but the device is not fully ready yet.
+            }
+        }
+
+        Start-Sleep -Seconds 1
+    }
+
+    return $false
+}
 
 # Check if ZIP file exists or firmware folder already exists
 if (Test-Path $zipFile) {
@@ -243,15 +291,67 @@ if (Test-Path $zipFile) {
     }
 } elseif (Test-Path $firmwarePath) {
     Write-Host "Using existing firmware folder..." -ForegroundColor Green
+    Write-Host "Warning: Reusing existing extracted firmware. Download a new firmware.zip if you expect recent code changes." -ForegroundColor Yellow
 } else {
     Write-Host "Error: Neither firmware.zip nor firmware folder found" -ForegroundColor Red
     exit 1
 }
 
+# Determine filename from actual extracted artifacts
+if ($side -eq "L") {
+    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+        -Candidates @(
+            "microball_L-seeeduino_xiao_ble-zmk.uf2",
+            "microball_L-xiao_ble-zmk.uf2"
+        ) `
+        -Pattern "microball_L-*.uf2"
+} else {
+    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+        -Candidates @(
+            "microball_R-seeeduino_xiao_ble-zmk.uf2",
+            "microball_R-xiao_ble-zmk.uf2"
+        ) `
+        -Pattern "microball_R-*.uf2"
+}
+
+$resetFileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+    -Candidates @(
+        "settings_reset-seeeduino_xiao_ble-zmk.uf2",
+        "settings_reset-xiao_ble-zmk.uf2"
+    ) `
+    -Pattern "settings_reset-*.uf2"
+
 $srcFile = Join-Path $firmwarePath $fileName
 $resetSrcFile = Join-Path $firmwarePath $resetFileName
 $dstFile = Join-Path $targetDrive $fileName
 $resetDstFile = Join-Path $targetDrive $resetFileName
+
+# Check file name resolution
+if (-not $fileName) {
+    Write-Host "Error: Could not find firmware file for side $side in $firmwarePath" -ForegroundColor Red
+    exit 1
+}
+
+if ($init -and -not $resetFileName) {
+    Write-Host "Error: Could not find settings reset firmware in $firmwarePath" -ForegroundColor Red
+    exit 1
+}
+
+$firmwareInfo = Get-Item $srcFile -ErrorAction SilentlyContinue
+if ($firmwareInfo) {
+    Write-Host "Selected firmware: $($firmwareInfo.FullName)" -ForegroundColor Cyan
+    Write-Host "Firmware modified: $($firmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+    Write-Host "Firmware created: $($firmwareInfo.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+}
+
+if ($init -and $resetFileName) {
+    $resetFirmwareInfo = Get-Item $resetSrcFile -ErrorAction SilentlyContinue
+    if ($resetFirmwareInfo) {
+        Write-Host "Selected reset firmware: $($resetFirmwareInfo.FullName)" -ForegroundColor Cyan
+        Write-Host "Reset firmware modified: $($resetFirmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+        Write-Host "Reset firmware created: $($resetFirmwareInfo.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+    }
+}
 
 # Check file exists
 if (-not (Test-Path $srcFile)) {
@@ -260,7 +360,7 @@ if (-not (Test-Path $srcFile)) {
 }
 
 # Check drive exists
-if (-not (Test-Path $targetDrive)) {
+if (-not (Wait-ForDrive -DrivePath $targetDrive -TimeoutSeconds 5)) {
     Write-Host "Error: Drive not found - $targetDrive" -ForegroundColor Red
     exit 1
 }
@@ -358,6 +458,12 @@ if ($init) {
             Copy-Item $resetSrcFile $resetDstFile -Force
             Write-Host "Settings reset firmware copied! Please wait for device to restart, then double-click reset button again." -ForegroundColor Cyan
             Read-Host "Press Enter after device has restarted and you've double-clicked reset button again"
+            Write-Host "Waiting for bootloader drive to reconnect..." -ForegroundColor Cyan
+
+            if (-not (Wait-ForDrive -DrivePath $targetDrive -TimeoutSeconds 60)) {
+                Write-Host "Error: Drive did not reconnect in time - $targetDrive" -ForegroundColor Red
+                exit 1
+            }
         } catch {
             Write-Host "Warning: Failed to copy settings reset firmware - $($_.Exception.Message)" -ForegroundColor Yellow
             Write-Host "Continuing with main firmware..." -ForegroundColor Yellow
