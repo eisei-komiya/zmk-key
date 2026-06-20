@@ -26,16 +26,13 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
 
-        /* Base: scale up cursor movement (low CPI + large scaler = fewer events, same speed) */
-        input-processors = <&zip_xy_scaler 3 1>;
-
         /* Layer 7 (SCROLL): convert trackball to scroll instead of cursor */
         scroll_layer {
             layers = <7>;
             input-processors =
                 <&zip_xy_to_scroll_mapper>,
                 <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
-                <&zip_scroll_scaler 1 6>;
+                <&zip_scroll_scaler 1 24>;
         };
     };
 };
@@ -77,10 +74,8 @@
         motion-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         zephyr,axis-x = <INPUT_REL_Y>;
         zephyr,axis-y = <INPUT_REL_X>;
-        res-cpi = <200>;
+        res-cpi = <400>;
         invert-x;
         force-awake;
     };
 };
-
-
