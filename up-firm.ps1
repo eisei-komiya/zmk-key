@@ -268,30 +268,6 @@ function Wait-ForDrive {
     return $false
 }
 
-# Determine filename from actual extracted artifacts
-if ($side -eq "L") {
-    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
-        -Candidates @(
-            "microball_L-xiao_ble-zmk.uf2",
-            "microball_L-seeeduino_xiao_ble-zmk.uf2"
-        ) `
-        -Pattern "microball_L-*.uf2"
-} else {
-    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
-        -Candidates @(
-            "microball_R-xiao_ble-zmk.uf2",
-            "microball_R-seeeduino_xiao_ble-zmk.uf2"
-        ) `
-        -Pattern "microball_R-*.uf2"
-}
-
-$resetFileName = Resolve-FirmwareFile -BasePath $firmwarePath `
-    -Candidates @(
-        "settings_reset-xiao_ble-zmk.uf2",
-        "settings_reset-seeeduino_xiao_ble-zmk.uf2"
-    ) `
-    -Pattern "settings_reset-*.uf2"
-
 # Check if ZIP file exists or firmware folder already exists
 if (Test-Path $zipFile) {
     # Remove existing firmware folder
@@ -320,6 +296,30 @@ if (Test-Path $zipFile) {
     Write-Host "Error: Neither firmware.zip nor firmware folder found" -ForegroundColor Red
     exit 1
 }
+
+# Determine filename from actual extracted artifacts
+if ($side -eq "L") {
+    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+        -Candidates @(
+            "microball_L-xiao_ble-zmk.uf2",
+            "microball_L-seeeduino_xiao_ble-zmk.uf2"
+        ) `
+        -Pattern "microball_L-*.uf2"
+} else {
+    $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+        -Candidates @(
+            "microball_R-xiao_ble-zmk.uf2",
+            "microball_R-seeeduino_xiao_ble-zmk.uf2"
+        ) `
+        -Pattern "microball_R-*.uf2"
+}
+
+$resetFileName = Resolve-FirmwareFile -BasePath $firmwarePath `
+    -Candidates @(
+        "settings_reset-xiao_ble-zmk.uf2",
+        "settings_reset-seeeduino_xiao_ble-zmk.uf2"
+    ) `
+    -Pattern "settings_reset-*.uf2"
 
 $srcFile = Join-Path $firmwarePath $fileName
 $resetSrcFile = Join-Path $firmwarePath $resetFileName
