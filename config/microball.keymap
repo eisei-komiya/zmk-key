@@ -4,7 +4,7 @@
 #include <dt-bindings/zmk/pointing.h>
 
 &msc {
-    trigger-period-ms = <1>;
+    trigger-period-ms = <32>;
     time-to-max-speed-ms = <0>;
     acceleration-exponent = <0>;
 };
@@ -239,7 +239,7 @@
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-            tap-ms = <2>;
+            tap-ms = <1>;
 
             label = "encoder_cw_ccw";
         };
