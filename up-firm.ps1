@@ -340,14 +340,16 @@ if ($init -and -not $resetFileName) {
 $firmwareInfo = Get-Item $srcFile -ErrorAction SilentlyContinue
 if ($firmwareInfo) {
     Write-Host "Selected firmware: $($firmwareInfo.FullName)" -ForegroundColor Cyan
-    Write-Host "Firmware timestamp: $($firmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+    Write-Host "Firmware modified: $($firmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+    Write-Host "Firmware created: $($firmwareInfo.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
 }
 
 if ($init -and $resetFileName) {
     $resetFirmwareInfo = Get-Item $resetSrcFile -ErrorAction SilentlyContinue
     if ($resetFirmwareInfo) {
         Write-Host "Selected reset firmware: $($resetFirmwareInfo.FullName)" -ForegroundColor Cyan
-        Write-Host "Reset firmware timestamp: $($resetFirmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+        Write-Host "Reset firmware modified: $($resetFirmwareInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
+        Write-Host "Reset firmware created: $($resetFirmwareInfo.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"))" -ForegroundColor Cyan
     }
 }
 
