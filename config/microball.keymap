@@ -233,6 +233,7 @@
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
             bindings = <&msc>, <&msc>;
+            tap-ms = <120>;
 
             label = "encoder_cw_ccw";
         };
