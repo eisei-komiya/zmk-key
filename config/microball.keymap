@@ -238,7 +238,7 @@
         encoder_cw_ccw: encoder_cw_ccw {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&msc MOVE_Y(-1)>, <&msc MOVE_Y(1)>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
             tap-ms = <2>;
 
             label = "encoder_cw_ccw";
