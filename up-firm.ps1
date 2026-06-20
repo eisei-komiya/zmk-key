@@ -241,6 +241,33 @@ function Resolve-FirmwareFile {
     return $null
 }
 
+function Wait-ForDrive {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$DrivePath,
+
+        [Parameter(Mandatory=$false)]
+        [int]$TimeoutSeconds = 60
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+
+    while ((Get-Date) -lt $deadline) {
+        if (Test-Path $DrivePath) {
+            try {
+                Get-ChildItem -Path $DrivePath -ErrorAction Stop | Out-Null
+                return $true
+            } catch {
+                # Drive letter exists but the device is not fully ready yet.
+            }
+        }
+
+        Start-Sleep -Seconds 1
+    }
+
+    return $false
+}
+
 # Determine filename from actual extracted artifacts
 if ($side -eq "L") {
     $fileName = Resolve-FirmwareFile -BasePath $firmwarePath `
@@ -316,7 +343,7 @@ if (-not (Test-Path $srcFile)) {
 }
 
 # Check drive exists
-if (-not (Test-Path $targetDrive)) {
+if (-not (Wait-ForDrive -DrivePath $targetDrive -TimeoutSeconds 5)) {
     Write-Host "Error: Drive not found - $targetDrive" -ForegroundColor Red
     exit 1
 }
@@ -414,6 +441,12 @@ if ($init) {
             Copy-Item $resetSrcFile $resetDstFile -Force
             Write-Host "Settings reset firmware copied! Please wait for device to restart, then double-click reset button again." -ForegroundColor Cyan
             Read-Host "Press Enter after device has restarted and you've double-clicked reset button again"
+            Write-Host "Waiting for bootloader drive to reconnect..." -ForegroundColor Cyan
+
+            if (-not (Wait-ForDrive -DrivePath $targetDrive -TimeoutSeconds 60)) {
+                Write-Host "Error: Drive did not reconnect in time - $targetDrive" -ForegroundColor Red
+                exit 1
+            }
         } catch {
             Write-Host "Warning: Failed to copy settings reset firmware - $($_.Exception.Message)" -ForegroundColor Yellow
             Write-Host "Continuing with main firmware..." -ForegroundColor Yellow
